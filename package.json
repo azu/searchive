@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "workspaces": [
+    "pacakges/*"
+  ],
+  "name": "searchive",
+  "version": "1.0.0",
+  "description": "Seach all my books.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "search",
+    "book",
+    "text",
+    "full-text",
+    "pdf",
+    "book",
+    "epub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/searchive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azu/searchive/issues"
+  },
+  "homepage": "https://github.com/azu/searchive"
+}
