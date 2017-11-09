@@ -1,6 +1,22 @@
 # searchive
 
-Seach all my books.
+Search all my documents{PDF}.
+
+## Modules
+
+This repository is a monorepo.
+
+| Package | Version |
+|---------|---------|
+| [`pdf-to-json`](./packages/pdf-to-json) | [![npm](https://img.shields.io/npm/v/pdf-to-json.svg?style=flat-square)](https://www.npmjs.com/package/pdf-to-json)
+| [`searchive-cli`](./packages/searchive-cli) | [![npm](https://img.shields.io/npm/v/searchive-cli.svg?style=flat-square)](https://www.npmjs.com/package/searchive-cli)
+| [`searchive-client`](./packages/searchive-client) | [![npm](https://img.shields.io/npm/v/searchive-client.svg?style=flat-square)](https://www.npmjs.com/package/searchive-client)
+| [`searchive-create-index`](./packages/searchive-create-index) | [![npm](https://img.shields.io/npm/v/searchive-create-index.svg?style=flat-square)](https://www.npmjs.com/package/searchive-create-index)
+
+## Development
+
+    yarn install
+    yarn run boostrap
 
 ## Changelog
 

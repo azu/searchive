@@ -9,7 +9,7 @@
   ],
   "name": "searchive",
   "version": "1.0.0",
-  "description": "Seach all my books.",
+  "description": "Search all my documents",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "prepublish": "yarn run bootstrap",
