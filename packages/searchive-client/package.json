@@ -1,0 +1,54 @@
+{
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "name": "searchive-client",
+  "version": "1.0.0",
+  "description": "Search text using index.",
+  "main": "lib/searchive-client.js",
+  "scripts": {
+    "test": "mocha 'test/**/*.ts'",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "watch": "tsc -p . --watch",
+    "prepublish": "npm run --if-present build"
+  },
+  "keywords": [
+    "search"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/searchive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azu/searchive/issues"
+  },
+  "homepage": "https://github.com/azu/searchive/tree/master/packages/searchive-client/",
+  "dependencies": {
+    "elasticlunr": "^0.9.5",
+    "lunr-languages": "^1.0.0",
+    "lunr-language-jp": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.50",
+    "cross-env": "^5.1.1",
+    "mocha": "^4.0.1",
+    "prettier": "^1.8.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "types": "lib/searchive-client.d.ts"
+}
