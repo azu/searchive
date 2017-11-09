@@ -1,6 +1,8 @@
 # searchive-create-index
 
-create search index
+create search index using [Elasticlunr](http://elasticlunr.com/ "Elasticlunr").
+
+- Create [Elasticlunr](http://elasticlunr.com/ "Elasticlunr") index json and return indexed json.
 
 ## Install
 
@@ -10,7 +12,26 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+### Write
+
+```js
+import * as fs from "fs";
+import { readAllAsJSON, createIndex } from "searchive-create-index";
+
+readAllAsJSON("/your/book/dir/**/*.pd").then(results => {
+    return createIndex(results)
+}).then(indexedObject => {
+    fs.writeFileSync("index.json", JSON.stringify(indexedObject), "utf-8");
+});
+```
+
+### Reader
+
+```js
+import * as fs from "fs";
+
+```
+
 
 ## Changelog
 

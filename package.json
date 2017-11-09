@@ -7,14 +7,15 @@
     "lib/",
     "src/"
   ],
-  "workspaces": [
-    "pacakges/*"
-  ],
   "name": "searchive",
   "version": "1.0.0",
   "description": "Seach all my books.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bootstrap": "lerna bootstrap",
+    "prepublish": "yarn run bootstrap",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
+    "precommit": "lint-staged",
+    "postcommit": "git reset"
   },
   "keywords": [
     "search",
@@ -32,5 +33,23 @@
   "bugs": {
     "url": "https://github.com/azu/searchive/issues"
   },
-  "homepage": "https://github.com/azu/searchive"
+  "homepage": "https://github.com/azu/searchive",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lerna": "^2.5.1",
+    "lint-staged": "^4.3.0",
+    "mocha": "^4.0.1",
+    "prettier": "^1.8.1",
+    "ts-node": "^3.3.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
