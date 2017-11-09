@@ -1,0 +1,28 @@
+{
+  "name": "electron-webpack-quick-start",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+  },
+  "dependencies": {
+    "searchive-client": "^1.0.0",
+    "searchive-create-index": "^1.0.0",
+    "@types/restify": "^5.0.6",
+    "@types/restify-errors": "^4.3.2",
+    "restify": "^6.3.2",
+    "restify-errors": "^5.0.0",
+    "source-map-support": "^0.5.0"
+  },
+  "devDependencies": {
+    "electron": "1.7.9",
+    "electron-builder": "^19.42.1",
+    "electron-webpack": "1.10.1",
+    "electron-webpack-ts": "^1.2.0",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1"
+  }
+}
