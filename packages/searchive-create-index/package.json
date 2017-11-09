@@ -33,9 +33,7 @@
   },
   "homepage": "https://github.com/azu/searchive/tree/master/pacakges/searchive-create-index/",
   "dependencies": {
-    "elasticlunr": "^0.9.5",
-    "lunr-languages": "^1.0.0",
-    "lunr-language-jp": "^1.0.0",
+    "searchive-client": "^1.0.0",
     "@types/p-limit": "^1.0.0",
     "p-limit": "^1.0.0",
     "pdf-to-json": "^1.0.0",

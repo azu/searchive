@@ -2,29 +2,22 @@
 import globby = require("globby");
 import { pdfToJSON, PdfToJSONResult } from "pdf-to-json";
 import * as os from "os";
-
-const lunr = require("elasticlunr");
-// set english and japanese
-require("lunr-languages/lunr.stemmer.support.js")(lunr);
-require("lunr-language-jp")(lunr);
-require("lunr-languages/lunr.multi.js")(lunr);
-lunr.multiLanguage("en", "jp");
-
+import { SearchiveClient } from "searchive-client";
 import pLimit = require("p-limit");
 
 const limit = pLimit(os.cpus().length || 4);
-export const createSearcher = (jsonList: PdfToJSONResult[]) => {
-    return lunr(function(this: any) {
-        this.use(lunr.multiLanguage("en", "jp"));
-        this.setRef("id");
-        this.addField("title");
-        this.addField("author");
-        this.addField("body");
-        this.addField("filePath");
-        this.addField("pageNumber");
+const addRToIndex = (jsonList: PdfToJSONResult[]) => {
+    const client = new SearchiveClient();
+    return client.createIndexer().then(indexer => {
+        indexer.setRef("id");
+        indexer.addField("title");
+        indexer.addField("author");
+        indexer.addField("body");
+        indexer.addField("filePath");
+        indexer.addField("pageNumber");
         jsonList.forEach(result => {
             result.pages.forEach(page => {
-                this.addDoc({
+                indexer.addDoc({
                     id: `${result.filePath}:${page.pageNumber}`,
                     title: result.meta.Title,
                     author: result.meta.Author,
@@ -34,11 +27,14 @@ export const createSearcher = (jsonList: PdfToJSONResult[]) => {
                 });
             });
         });
+        return indexer;
     });
 };
 
 export const createIndex = (jsonList: PdfToJSONResult[]): Object => {
-    return createSearcher(jsonList).toJSON();
+    return addRToIndex(jsonList).then(indexer => {
+        return indexer.toJSON();
+    });
 };
 
 export const readAllAsJSON = (globList: string[]): Promise<PdfToJSONResult[]> => {

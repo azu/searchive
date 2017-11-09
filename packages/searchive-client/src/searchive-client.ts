@@ -6,15 +6,33 @@ require("lunr-language-jp")(lunr);
 require("lunr-languages/lunr.multi.js")(lunr);
 lunr.multiLanguage("en", "jp");
 
+export interface SearchiveDocument {
+    id: string;
+    title?: string;
+    author?: string;
+    body: string;
+    filePath: string;
+    pageNumber: number;
+}
+
 export interface SearchiveSearchIndexer {
-    use;
-    setRef;
+    use(...plugins: any[]): void;
 
-    addField(field: string);
+    setRef(ref: string): void;
 
-    addDoc(): void;
+    addField(field: string): void;
+
+    addDoc(doc: SearchiveDocument): void;
+
+    toJSON(): Object;
 }
 
 export class SearchiveClient {
-    addIndex(indexer) {}
+    createIndexer(): Promise<SearchiveSearchIndexer> {
+        return new Promise(resolve => {
+            lunr(function(this: any) {
+                resolve(this as SearchiveSearchIndexer);
+            });
+        });
+    }
 }
