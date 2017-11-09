@@ -2,39 +2,35 @@
 import globby = require("globby");
 import { pdfToJSON, PdfToJSONResult } from "pdf-to-json";
 import * as os from "os";
-import { SearchiveClient } from "searchive-client";
 import pLimit = require("p-limit");
+import { SearchiveIndexer } from "searchive-client";
 
 const limit = pLimit(os.cpus().length || 4);
 const addRToIndex = (jsonList: PdfToJSONResult[]) => {
-    const client = new SearchiveClient();
-    return client.createIndexer().then(indexer => {
-        indexer.setRef("id");
-        indexer.addField("title");
-        indexer.addField("author");
-        indexer.addField("body");
-        indexer.addField("filePath");
-        indexer.addField("pageNumber");
-        jsonList.forEach(result => {
-            result.pages.forEach(page => {
-                indexer.addDoc({
-                    id: `${result.filePath}:${page.pageNumber}`,
-                    title: result.meta.Title,
-                    author: result.meta.Author,
-                    body: page.texts.join("\n"),
-                    filePath: result.filePath,
-                    pageNumber: page.pageNumber
-                });
+    const indexer = new SearchiveIndexer();
+    indexer.setRef("id");
+    indexer.addField("title");
+    indexer.addField("author");
+    indexer.addField("body");
+    indexer.addField("filePath");
+    indexer.addField("pageNumber");
+    jsonList.forEach(result => {
+        result.pages.forEach(page => {
+            indexer.addDoc({
+                id: `${result.filePath}:${page.pageNumber}`,
+                title: result.meta.Title,
+                author: result.meta.Author,
+                body: page.texts.join("\n"),
+                filePath: result.filePath,
+                pageNumber: page.pageNumber
             });
         });
-        return indexer;
     });
+    return indexer;
 };
 
 export const createIndex = (jsonList: PdfToJSONResult[]): Object => {
-    return addRToIndex(jsonList).then(indexer => {
-        return indexer.toJSON();
-    });
+    return addRToIndex(jsonList).toJSON();
 };
 
 export const readAllAsJSON = (globList: string[]): Promise<PdfToJSONResult[]> => {
@@ -50,7 +46,7 @@ export const readAllAsJSON = (globList: string[]): Promise<PdfToJSONResult[]> =>
                         console.log(`Finish ${filePath}`);
                         results.push(result);
                     })
-                    .catch(error => {
+                    .catch((error: any) => {
                         console.error("Error", error);
                     });
             });
