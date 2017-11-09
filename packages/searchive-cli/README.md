@@ -10,7 +10,28 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+### Create Index
+
+    Usage
+      $ searchive-index <input>|<glob> --output <path>
+
+    Options
+      --output Output to write index json file
+
+    Examples
+      $ searchive-index "/your/book/**/*.pdf" --output index.json
+
+### Search text in index
+
+    Usage
+      $ searchive-search <input> --input <index-path>
+
+    Options
+      --input Input to read index json file
+
+    Examples
+      $ searchive-index "search word" --input index.json
+
 
 ## Changelog
 
