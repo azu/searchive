@@ -10,7 +10,6 @@ describe("pdf-to-json", () => {
         assert.ok(Array.isArray(pages));
         assert.ok(typeof meta === "object");
         pages.forEach(page => {
-            console.log(page.texts);
             assert.ok(page.pageNumber > 0);
             assert.ok(Array.isArray(page.texts));
         });

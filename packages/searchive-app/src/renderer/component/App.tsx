@@ -17,14 +17,15 @@ export class App extends React.Component<AppProps, {}> {
     };
 
     componentDidMount() {
+        console.log(`file://${__dirname}/package.json`);
         console.log("Reauest", `http://localhost:12347/api/search?text=Java`);
-        fetch(`http://localhost:12347/api/search?text=Java`)
-            .then(res => res.json())
-            .then((results: SearchiveDocument[]) => {
-                this.setState({
-                    items: results
-                });
-            });
+        // fetch(`http://localhost:12347/api/search?text=Java`)
+        //     .then(res => res.json())
+        //     .then((results: SearchiveDocument[]) => {
+        //         this.setState({
+        //             items: results
+        //         });
+        //     });
     }
 
     render() {

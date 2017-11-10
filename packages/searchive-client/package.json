@@ -19,7 +19,8 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "update-fixtures": "searchive-index './test/fixtures/pdf/*.pdf' --output ./test/fixtures/index.json"
   },
   "keywords": [
     "search"
@@ -44,7 +45,8 @@
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.1",
+    "searchive-cli": "^1.0.0"
   },
   "prettier": {
     "printWidth": 120,
