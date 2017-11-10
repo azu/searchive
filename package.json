@@ -10,6 +10,17 @@
   "name": "searchive",
   "version": "1.0.0",
   "description": "Search all my documents",
+  "electronWebpack": {
+    "main": {
+      "sourceDirectory": "src/main"
+    },
+    "server": {
+      "sourceDirectory": "src/server"
+    },
+    "renderer": {
+      "sourceDirectory": "src/renderer"
+    }
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "prepublish": "yarn run bootstrap",
@@ -35,12 +46,14 @@
   },
   "homepage": "https://github.com/azu/searchive",
   "devDependencies": {
+    "@types/mocha": "^2.2.44",
     "husky": "^0.14.3",
     "lerna": "^2.5.1",
     "lint-staged": "^4.3.0",
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
-    "ts-node": "^3.3.0"
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
   },
   "prettier": {
     "printWidth": 120,
