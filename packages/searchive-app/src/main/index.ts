@@ -1,13 +1,10 @@
 "use strict";
 import { app, BrowserWindow } from "electron";
-import { SearchiveServer } from "./SearchiveServer";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-
 // Global reference to mainWindow
 // Necessary to prevent win from being garbage collected
 let mainWindow: BrowserWindow | null;
-let server: SearchiveServer | null;
 
 function createMainWindow() {
     // Construct new BrowserWindow
@@ -30,13 +27,6 @@ function createMainWindow() {
         mainWindow = null;
     });
 
-    window.webContents.on("devtools-opened", () => {
-        window.focus();
-        setImmediate(() => {
-            window.focus();
-        });
-    });
-
     return window;
 }
 
@@ -56,6 +46,4 @@ app.on("activate", () => {
 // Create main BrowserWindow when electron is ready
 app.on("ready", () => {
     mainWindow = createMainWindow();
-    server = new SearchiveServer();
-    server.start();
 });

@@ -16,7 +16,7 @@ export function searchIndex(text: string, indexPath: string): string[] {
     return searcher
         .searchText(text)
         .map(hit => {
-            return searcher.getDoc(hit.ref);
+            return searcher.getDoc(hit.ref) as SearchiveDocument;
         })
         .filter(doc => doc !== undefined)
         .sort((a: SearchiveDocument, b: SearchiveDocument) => {

@@ -3,21 +3,26 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "run-p api:server dev",
     "dev": "electron-webpack dev",
+    "api:server": "searchive-server --index-path ./index.json",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
+    "react-fuzzy-filter": "^3.2.0",
+    "searchive-server": "^1.0.0",
     "searchive-client": "^1.0.0",
     "searchive-create-index": "^1.0.0",
-    "@types/restify": "^5.0.6",
-    "@types/restify-errors": "^4.3.2",
-    "restify": "^6.3.2",
-    "restify-errors": "^5.0.0",
+    "@types/react": "^16.0.22",
+    "@types/react-dom": "^16.0.3",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
     "source-map-support": "^0.5.0"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.2",
     "electron": "1.7.9",
     "electron-builder": "^19.42.1",
     "electron-webpack": "1.10.1",

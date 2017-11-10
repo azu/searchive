@@ -1,0 +1,61 @@
+{
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "name": "searchive-server",
+  "version": "1.0.0",
+  "description": "Searchive API Server.",
+  "main": "lib/searchive-server.js",
+  "bin": {
+    "searchive-server": "./bin/searchive-server.js"
+  },
+  "scripts": {
+    "test": "mocha 'test/**/*.ts'",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "watch": "tsc -p . --watch",
+    "prepublish": "npm run --if-present build"
+  },
+  "keywords": [
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/searchive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azu/searchive/issues"
+  },
+  "homepage": "https://github.com/azu/searchive/tree/master/packages/searchive-server/",
+  "dependencies": {
+    "meow": "^3.7.0",
+    "searchive-client": "^1.0.0",
+    "searchive-create-index": "^1.0.0",
+    "@types/restify": "^5.0.6",
+    "@types/restify-errors": "^4.3.2",
+    "restify": "^6.3.2",
+    "restify-errors": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.50",
+    "cross-env": "^5.1.1",
+    "mocha": "^4.0.1",
+    "prettier": "^1.8.2",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "types": "lib/searchive-server.d.ts"
+}

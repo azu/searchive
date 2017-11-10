@@ -84,4 +84,4 @@ crashlytics-build.properties
 
 packages/*/lib/
 packages/*/yarn.lock
-/packages/**/index.json
+/packages/searchive-app/index.json

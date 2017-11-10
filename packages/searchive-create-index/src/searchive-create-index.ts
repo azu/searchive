@@ -42,9 +42,9 @@ export const readAllAsJSON = (globList: string[]): Promise<PdfToJSONResult[]> =>
                     console.log(`Process ${filePath}`);
                     return pdfToJSON(filePath);
                 })
-                    .then((result: PdfToJSONResult) => {
+                    .then((result: any) => {
                         console.log(`Finish ${filePath}`);
-                        results.push(result);
+                        results.push(result as PdfToJSONResult);
                     })
                     .catch((error: any) => {
                         console.error("Error", error);
