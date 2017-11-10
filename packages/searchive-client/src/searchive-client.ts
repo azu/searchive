@@ -20,12 +20,16 @@ export interface SearchiveDocument {
 export class SearchiveIndexer {
     private lunrInstance: any;
 
-    constructor() {
-        const that = this;
-        lunr(function(this: any) {
-            that.lunrInstance = this;
-            // Apply lang
-            that.lunrInstance.use(lunr.multiLanguage("en", "jp"));
+    get ready(): Promise<this> {
+        return new Promise(resolve => {
+            const that = this;
+            lunr(function(this: any) {
+                that.lunrInstance = this;
+                // Apply lang
+                that.lunrInstance.use(lunr.multiLanguage("en", "jp"));
+                // ready ok
+                resolve(this);
+            });
         });
     }
 

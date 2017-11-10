@@ -5,8 +5,9 @@ import * as fs from "fs";
 
 export function writeIndex(globList: string[], outputPath: string): Promise<void> {
     return readAllAsJSON(globList).then(results => {
-        const index = createIndex(results);
-        fs.writeFileSync(outputPath, JSON.stringify(index), "utf-8");
+        return createIndex(results).then(index => {
+            fs.writeFileSync(outputPath, JSON.stringify(index), "utf-8");
+        });
     });
 }
 
