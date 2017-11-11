@@ -1,10 +1,13 @@
 "use strict";
 import { app, BrowserWindow } from "electron";
+import { SearchiveServer } from "searchive-server";
+import * as path from "path";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 // Global reference to mainWindow
 // Necessary to prevent win from being garbage collected
 let mainWindow: BrowserWindow | null;
+let server: SearchiveServer | null;
 
 function createMainWindow() {
     // Construct new BrowserWindow
@@ -46,4 +49,10 @@ app.on("activate", () => {
 // Create main BrowserWindow when electron is ready
 app.on("ready", () => {
     mainWindow = createMainWindow();
+    const indexPath = path.join(app.getPath("userData"), "index.json");
+    console.log(indexPath);
+    server = new SearchiveServer({
+        indexPath: indexPath
+    });
+    server.start();
 });

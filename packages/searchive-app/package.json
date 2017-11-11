@@ -1,16 +1,18 @@
 {
+  "private": true,
   "name": "electron-webpack-quick-start",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "run-p api:server dev",
+    "start": "run-p dev",
     "dev": "electron-webpack dev",
-    "api:server": "searchive-server --index-path ./index.json",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
+    "@uifabric/icons": "^5.2.0",
+    "office-ui-fabric-react": "^5.21.0",
     "react-fuzzy-filter": "^3.2.0",
     "searchive-server": "^1.0.0",
     "searchive-client": "^1.0.0",

@@ -1,6 +1,11 @@
 // MIT © 2017 azu
 import { SearchQueryTester } from "search-query-tester";
 
+export interface SearchiveDocumentIndex {
+    indexPatterns: string[];
+    documents: SearchiveDocument[];
+}
+
 export interface SearchiveDocument {
     id: string;
     title?: string;
@@ -11,7 +16,13 @@ export interface SearchiveDocument {
 }
 
 export class SearchiveIndexer {
-    private index: SearchiveDocument[] = [];
+    private index: SearchiveDocumentIndex | undefined;
+    private documents: SearchiveDocument[];
+
+    constructor(database?: SearchiveDocumentIndex) {
+        this.index = database;
+        this.documents = this.index ? this.index.documents : [];
+    }
 
     get ready(): Promise<this> {
         return new Promise(resolve => {
@@ -20,24 +31,33 @@ export class SearchiveIndexer {
     }
 
     addDoc(doc: SearchiveDocument): void {
-        this.index.push(doc);
+        this.documents.push(doc);
     }
 
-    toJSON(): Object {
-        return this.index;
+    toIndex(indexPatterns: string[]): SearchiveDocumentIndex {
+        return {
+            indexPatterns,
+            documents: this.documents
+        };
     }
 }
 
 export class SearchiveSearcher {
-    private index: SearchiveDocument[];
+    private index: SearchiveDocumentIndex;
 
-    constructor(database: Object) {
-        this.index = database as SearchiveDocument[];
+    constructor(database: SearchiveDocumentIndex) {
+        this.index = database;
+    }
+
+    get ready(): Promise<this> {
+        return new Promise(resolve => {
+            resolve(this);
+        });
     }
 
     search(text: string): SearchiveDocument[] {
         const tester = new SearchQueryTester();
-        return this.index.filter(doc => {
+        return this.index.documents.filter(doc => {
             return tester.test(text, doc);
         });
     }

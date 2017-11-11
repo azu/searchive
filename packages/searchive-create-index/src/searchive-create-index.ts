@@ -4,6 +4,7 @@ import { pdfToJSON, PdfToJSONResult } from "pdf-to-json";
 import * as os from "os";
 import pLimit = require("p-limit");
 import { SearchiveIndexer } from "searchive-client";
+import { SearchiveDocumentIndex } from "../../searchive-client/src/searchive-client";
 
 const limit = pLimit(os.cpus().length || 4);
 const addRToIndex = (jsonList: PdfToJSONResult[]) => {
@@ -25,8 +26,14 @@ const addRToIndex = (jsonList: PdfToJSONResult[]) => {
     });
 };
 
-export const createIndex = (jsonList: PdfToJSONResult[]): Promise<Object> => {
-    return addRToIndex(jsonList).then(indexer => indexer.toJSON());
+export const createIndex = (globList: string[]): Promise<SearchiveDocumentIndex> => {
+    return readAllAsJSON(globList)
+        .then((results: PdfToJSONResult[]) => {
+            return addRToIndex(results);
+        })
+        .then(indexer => {
+            return indexer.toIndex(globList);
+        });
 };
 
 export const readAllAsJSON = (globList: string[]): Promise<PdfToJSONResult[]> => {

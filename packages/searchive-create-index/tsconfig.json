@@ -25,6 +25,11 @@
     "noFallthroughCasesInSwitch": true
     /* Report errors for fallthrough cases in switch statement. */
   },
+  "plugins": [
+    {
+      "name": "typescript-workspace-plugin"
+    }
+  ],
   "include": [
     "src/**/*"
   ],

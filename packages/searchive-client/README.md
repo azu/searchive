@@ -10,9 +10,13 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
+### Indexer
 
+- [ ] Write index
 
-### Search
+### Searcher
+
+- [ ] Search keywords from index
 
 #### Supported Keywords
 

@@ -1,4 +1,6 @@
 .DS_Store
 dist/
+lib/
 node_modules/
 thumbs.db
+!/src/renderer/index.ts

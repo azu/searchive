@@ -1,13 +1,11 @@
 // MIT © 2017 azu
 import { SearchiveSearcher, SearchiveDocument } from "searchive-client";
-import { createIndex, readAllAsJSON } from "searchive-create-index";
+import { createIndex } from "searchive-create-index";
 import * as fs from "fs";
 
 export function writeIndex(globList: string[], outputPath: string): Promise<void> {
-    return readAllAsJSON(globList).then(results => {
-        return createIndex(results).then(index => {
-            fs.writeFileSync(outputPath, JSON.stringify(index), "utf-8");
-        });
+    return createIndex(globList).then(index => {
+        fs.writeFileSync(outputPath, JSON.stringify(index), "utf-8");
     });
 }
 

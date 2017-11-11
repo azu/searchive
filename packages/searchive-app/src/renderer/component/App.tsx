@@ -1,11 +1,10 @@
 // MIT © 2017 azu
 import * as React from "react";
 
-import { SearchiveDocument } from "searchive-client";
-
-const fuzzyFilterFactory = require("react-fuzzy-filter");
-// these components share state and can even live in different components
-const { InputFilter, FilterResults } = fuzzyFilterFactory();
+import { SearchiveDocument, SearchiveSearcher } from "searchive-client";
+import { SearchBar } from "./SearchBar/SearchBar";
+import { SearchResultList } from "./SearchResultList/SearchResultList";
+import { SearchResultFilterBar } from "../../../lib/renderer/component/SearchResultFilterBar/SearchResultFilterBar";
 
 export interface AppProps {
     items: SearchiveDocument[];
@@ -13,50 +12,64 @@ export interface AppProps {
 
 export class App extends React.Component<AppProps, {}> {
     state = {
-        items: []
+        items: [],
+        filteredItems: [],
+        filter: undefined
     };
 
-    componentDidMount() {
-        console.log(`file://${__dirname}/package.json`);
-        console.log("Reauest", `http://localhost:12347/api/search?text=Java`);
-        fetch(`http://localhost:12347/api/search?text=Java`)
+    private getFilterItems = (items: SearchiveDocument[], filter?: string) => {
+        if (!filter) {
+            return items;
+        }
+        const searcher = new SearchiveSearcher(items);
+        return searcher.search(filter);
+    };
+
+    onChangedFilter = (filterValue: string) => {
+        this.setState({
+            filter: filterValue,
+            filteredItems: this.getFilterItems(this.state.items, filterValue)
+        });
+    };
+
+    onClear = () => {
+        this.setState({
+            filteredItems: this.getFilterItems(this.state.items)
+        });
+    };
+
+    onSearch = (text: string) => {
+        const pass = function(response: Response): Promise<Response> {
+            if (!response.ok) {
+                return Promise.reject(new Error(response.statusText));
+            }
+            return Promise.resolve(response);
+        };
+        fetch(`http://localhost:12347/api/search?text=${encodeURIComponent(text)}`)
+            .then(pass)
             .then(res => res.json())
             .then((results: SearchiveDocument[]) => {
                 this.setState({
-                    items: results
+                    items: results,
+                    filteredItems: this.getFilterItems(results, this.state.filter)
                 });
+            })
+            .catch(error => {
+                console.error(error);
             });
-    }
+    };
 
     render() {
-        const items = this.state.items;
-        const fuseConfig = {
-            findAllMatches: true,
-            keys: ["title", "body", "author", "filePath"]
-        };
         return (
-            <div>
-                <InputFilter debounceTime={200} />
-                <FilterResults items={items} fuseConfig={fuseConfig}>
-                    {(filteredItems: any) => {
-                        return (
-                            <div>
-                                {filteredItems.map((item: any) => {
-                                    return (
-                                        <div key={item.id}>
-                                            <h1>
-                                                <a href={item.filePath} title={item.title}>
-                                                    {item.title ? `${item.title}#${item.pageNumber}` : item.id}
-                                                </a>
-                                            </h1>
-                                            <p>{item.body}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        );
-                    }}
-                </FilterResults>
+            <div className="App">
+                <div>
+                    <SearchBar onClear={this.onClear} onSearch={this.onSearch} />
+                    <SearchResultFilterBar onChanged={this.onChangedFilter} />
+                </div>
+                <div>
+                    <span>検索結果: {this.state.filteredItems.length}件</span>
+                    <SearchResultList items={this.state.filteredItems} />
+                </div>
             </div>
         );
     }
