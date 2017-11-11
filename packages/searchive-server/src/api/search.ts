@@ -14,7 +14,7 @@ export const searchAPI = (args: SearchiveServerArgs) => {
             return next(new ServiceUnavailableError(`Not found index`));
         }
         const index = JSON.parse(fs.readFileSync(args.indexPath, "utf-8"));
-        const searcher = new SearchiveSearcher(index);
+        const searcher = new SearchiveSearcher(index.documents);
         console.info("Search", req.params.text);
         const response = searcher.search(req.params.text).sort((a: SearchiveDocument, b: SearchiveDocument) => {
             return a.pageNumber - b.pageNumber;

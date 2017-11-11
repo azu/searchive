@@ -11,6 +11,10 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
+    "ddd-base": "^0.3.0",
+    "almin": "^0.14.0",
+    "almin-logger": "^6.1.0",
+    "almin-react-container": "^0.4.0",
     "@uifabric/icons": "^5.2.0",
     "office-ui-fabric-react": "^5.21.0",
     "react-fuzzy-filter": "^3.2.0",

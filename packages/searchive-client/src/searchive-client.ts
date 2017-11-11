@@ -43,10 +43,10 @@ export class SearchiveIndexer {
 }
 
 export class SearchiveSearcher {
-    private index: SearchiveDocumentIndex;
+    private documents: SearchiveDocument[];
 
-    constructor(database: SearchiveDocumentIndex) {
-        this.index = database;
+    constructor(documents: SearchiveDocument[]) {
+        this.documents = documents;
     }
 
     get ready(): Promise<this> {
@@ -57,7 +57,7 @@ export class SearchiveSearcher {
 
     search(text: string): SearchiveDocument[] {
         const tester = new SearchQueryTester();
-        return this.index.documents.filter(doc => {
+        return this.documents.filter(doc => {
             return tester.test(text, doc);
         });
     }

@@ -1,17 +1,21 @@
 // MIT © 2017 azu
 import * as React from "react";
 
-import { SearchiveDocument, SearchiveSearcher } from "searchive-client";
+import { SearchiveDocument, SearchiveDocumentIndex, SearchiveSearcher } from "searchive-client";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { SearchResultList } from "./SearchResultList/SearchResultList";
 import { SearchResultFilterBar } from "../../../lib/renderer/component/SearchResultFilterBar/SearchResultFilterBar";
+import { SearchIndexBar } from "./SearchIndexBar/SearchIndexBar";
+import { Context } from "almin";
 
 export interface AppProps {
+    context: Context<any>;
     items: SearchiveDocument[];
 }
 
 export class App extends React.Component<AppProps, {}> {
     state = {
+        indexPatterns: [],
         items: [],
         filteredItems: [],
         filter: undefined
@@ -48,10 +52,11 @@ export class App extends React.Component<AppProps, {}> {
         fetch(`http://localhost:12347/api/search?text=${encodeURIComponent(text)}`)
             .then(pass)
             .then(res => res.json())
-            .then((results: SearchiveDocument[]) => {
+            .then((documentIndex: SearchiveDocumentIndex) => {
                 this.setState({
-                    items: results,
-                    filteredItems: this.getFilterItems(results, this.state.filter)
+                    indexPatterns: documentIndex.indexPatterns,
+                    items: documentIndex.documents,
+                    filteredItems: this.getFilterItems(documentIndex.documents, this.state.filter)
                 });
             })
             .catch(error => {
@@ -62,6 +67,9 @@ export class App extends React.Component<AppProps, {}> {
     render() {
         return (
             <div className="App">
+                <div>
+                    <SearchIndexBar indexPatterns={} onSearch={this.onSearch} />
+                </div>
                 <div>
                     <SearchBar onClear={this.onClear} onSearch={this.onSearch} />
                     <SearchResultFilterBar onChanged={this.onChangedFilter} />

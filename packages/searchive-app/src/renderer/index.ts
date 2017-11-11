@@ -13,5 +13,25 @@ require("./index.css");
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { App } from "./component/App";
+import { Context, Dispatcher } from "almin";
+import { appStoreGroup } from "./store/AppStoreGroup";
+import { AlminLogger } from "almin-logger";
+import AlminReactContainer from "almin-react-container";
 
-ReactDOM.render(React.createElement(App), document.getElementById("app"));
+// instances
+const dispatcher = new Dispatcher();
+// context connect dispatch with stores
+const context = new Context({
+    dispatcher,
+    store: appStoreGroup,
+    options: {
+        strict: true,
+        performanceProfile: process.env.NODE_ENV !== "production"
+    }
+});
+if (process.env.NODE_ENV !== "production") {
+    const logger = new AlminLogger();
+    logger.startLogging(context);
+}
+const Container = AlminReactContainer.create(App, context);
+ReactDOM.render(React.createElement(Container), document.getElementById("app"));
