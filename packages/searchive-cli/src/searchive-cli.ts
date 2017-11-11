@@ -15,11 +15,7 @@ export function searchIndex(text: string, indexPath: string): string[] {
     const index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
     const searcher = new SearchiveSearcher(index);
     return searcher
-        .searchText(text)
-        .map(hit => {
-            return searcher.getDoc(hit.ref) as SearchiveDocument;
-        })
-        .filter(doc => doc !== undefined)
+        .search(text)
         .sort((a: SearchiveDocument, b: SearchiveDocument) => {
             return a.pageNumber - b.pageNumber;
         })

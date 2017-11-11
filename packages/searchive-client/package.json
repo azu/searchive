@@ -34,9 +34,7 @@
   },
   "homepage": "https://github.com/azu/searchive/tree/master/packages/searchive-client/",
   "dependencies": {
-    "elasticlunr": "^0.9.5",
-    "lunr-languages": "^1.0.0",
-    "lunr-language-jp": "^1.0.0"
+    "search-query-tester": "^1.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.44",

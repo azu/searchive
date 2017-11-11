@@ -9,12 +9,6 @@ const limit = pLimit(os.cpus().length || 4);
 const addRToIndex = (jsonList: PdfToJSONResult[]) => {
     const indexer = new SearchiveIndexer();
     return indexer.ready.then(indexer => {
-        indexer.setRef("id");
-        indexer.addField("title");
-        indexer.addField("author");
-        indexer.addField("body");
-        indexer.addField("filePath");
-        indexer.addField("pageNumber");
         jsonList.forEach(result => {
             result.pages.forEach(page => {
                 indexer.addDoc({

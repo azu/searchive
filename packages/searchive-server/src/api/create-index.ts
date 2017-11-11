@@ -10,7 +10,6 @@ export const createIndexAPI = (args: SearchiveServerArgs) => {
         if (!req.body.fileGlob) {
             return next(new BadRequestError(`should include body: { fileGlob: "/path/**/*.pdf" }`));
         }
-        console.log("req.body.fileGlob", req.body.fileGlob);
         readAllAsJSON(req.body.fileGlob)
             .then(results => {
                 const index = createIndex(results);

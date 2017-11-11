@@ -1,12 +1,5 @@
 // MIT © 2017 azu
-import { createSearchSet, SearchOperator } from "./search-word-timer";
-
-const lunr = require("elasticlunr");
-// set english and japanese
-require("lunr-languages/lunr.stemmer.support.js")(lunr);
-require("lunr-language-jp")(lunr);
-require("lunr-languages/lunr.multi.js")(lunr);
-lunr.multiLanguage("en", "jp");
+import { SearchQueryTester } from "search-query-tester";
 
 export interface SearchiveDocument {
     id: string;
@@ -18,61 +11,34 @@ export interface SearchiveDocument {
 }
 
 export class SearchiveIndexer {
-    private lunrInstance: any;
+    private index: SearchiveDocument[] = [];
 
     get ready(): Promise<this> {
         return new Promise(resolve => {
-            const that = this;
-            lunr(function(this: any) {
-                that.lunrInstance = this;
-                // Apply lang
-                that.lunrInstance.use(lunr.multiLanguage("en", "jp"));
-                // ready ok
-                resolve(this);
-            });
+            resolve(this);
         });
     }
 
-    use(...plugins: any[]): void {
-        this.lunrInstance.use(...plugins);
-    }
-
-    setRef(ref: string): void {
-        this.lunrInstance.setRef(ref);
-    }
-
-    addField(field: string): void {
-        this.lunrInstance.addField(field);
-    }
-
     addDoc(doc: SearchiveDocument): void {
-        this.lunrInstance.addDoc(doc);
+        this.index.push(doc);
     }
 
     toJSON(): Object {
-        return this.lunrInstance.toJSON();
+        return this.index;
     }
 }
 
 export class SearchiveSearcher {
-    private idx: any;
+    private index: SearchiveDocument[];
 
     constructor(database: Object) {
-        this.idx = lunr.Index.load(database);
+        this.index = database as SearchiveDocument[];
     }
 
-    search(text: string, operator: SearchOperator = "OR"): { ref: string; score: number }[] {
-        return this.idx.search(text, {
-            bool: operator
+    search(text: string): SearchiveDocument[] {
+        const tester = new SearchQueryTester();
+        return this.index.filter(doc => {
+            return tester.test(text, doc);
         });
-    }
-
-    searchText(text: string): { ref: string; score: number }[] {
-        const set = createSearchSet(text);
-        return this.search(set.text, set.operator);
-    }
-
-    getDoc(ref: string): SearchiveDocument | undefined {
-        return this.idx.documentStore.getDoc(ref);
     }
 }
