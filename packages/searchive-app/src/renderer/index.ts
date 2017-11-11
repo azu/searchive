@@ -1,5 +1,13 @@
 // MIT © 2017 azu
 import { initializeIcons } from "@uifabric/icons";
+// index
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { App } from "./component/App";
+import { Context, Dispatcher } from "almin";
+import { appStoreGroup } from "./store/AppStoreGroup";
+import { AlminLogger } from "almin-logger";
+import AlminReactContainer from "almin-react-container";
 // Register icons and pull the fonts from the default SharePoint cdn:
 initializeIcons();
 
@@ -9,14 +17,6 @@ function requireAll(r: any) {
 
 requireAll(require.context("./", true, /\.css$/));
 require("./index.css");
-// index
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { App } from "./component/App";
-import { Context, Dispatcher } from "almin";
-import { appStoreGroup } from "./store/AppStoreGroup";
-import { AlminLogger } from "almin-logger";
-import AlminReactContainer from "almin-react-container";
 
 // instances
 const dispatcher = new Dispatcher();
@@ -34,4 +34,9 @@ if (process.env.NODE_ENV !== "production") {
     logger.startLogging(context);
 }
 const Container = AlminReactContainer.create(App, context);
-ReactDOM.render(React.createElement(Container), document.getElementById("app"));
+ReactDOM.render(
+    React.createElement(Container, {
+        context
+    }),
+    document.getElementById("app")
+);

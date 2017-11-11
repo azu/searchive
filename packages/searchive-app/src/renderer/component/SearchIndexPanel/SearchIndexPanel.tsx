@@ -1,13 +1,11 @@
 // MIT © 2017 azu
-import React from "react";
-import { Panel, PanelType, PrimaryButton } from "office-ui-fabric-react";
-import { SearchIndexBar } from "../SearchIndexBar/SearchIndexBar";
+import * as React from "react";
+import { Panel, PanelType } from "office-ui-fabric-react";
 
 export interface SearchIndexPanelProps {
     indexPatterns: string[];
     isOpen: boolean;
     onDismiss: () => void;
-    onSubmit: (settingJSON: GitHubSettingJSON) => void;
 }
 
 export interface SearchIndexPanelState {}
@@ -24,9 +22,7 @@ export class SearchIndexPanel extends React.Component<SearchIndexPanelProps, Sea
                 isLightDismiss={true}
                 headerText="SearchIndex Settings"
                 onDismiss={() => this.props.onDismiss()}
-            >
-                <SearchIndexBar indexPatterns={this.props.indexPatterns} />
-            </Panel>
+            />
         );
     }
 }
