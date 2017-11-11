@@ -7,7 +7,7 @@
     "outDir": "./lib/",
     "target": "es5",
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "jsx": "react",
     "lib": [
       "es2017",
