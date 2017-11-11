@@ -8,29 +8,25 @@ import { SearchiveIndexer } from "searchive-client";
 const limit = pLimit(os.cpus().length || 4);
 const addRToIndex = (jsonList: PdfToJSONResult[]) => {
     const indexer = new SearchiveIndexer();
-    indexer.setRef("id");
-    indexer.addField("title");
-    indexer.addField("author");
-    indexer.addField("body");
-    indexer.addField("filePath");
-    indexer.addField("pageNumber");
-    jsonList.forEach(result => {
-        result.pages.forEach(page => {
-            indexer.addDoc({
-                id: `${result.filePath}:${page.pageNumber}`,
-                title: result.meta.Title,
-                author: result.meta.Author,
-                body: page.texts.join("\n"),
-                filePath: result.filePath,
-                pageNumber: page.pageNumber
+    return indexer.ready.then(indexer => {
+        jsonList.forEach(result => {
+            result.pages.forEach(page => {
+                indexer.addDoc({
+                    id: `${result.filePath}:${page.pageNumber}`,
+                    title: result.meta.Title,
+                    author: result.meta.Author,
+                    body: page.texts.join("\n"),
+                    filePath: result.filePath,
+                    pageNumber: page.pageNumber
+                });
             });
         });
+        return indexer;
     });
-    return indexer;
 };
 
-export const createIndex = (jsonList: PdfToJSONResult[]): Object => {
-    return addRToIndex(jsonList).toJSON();
+export const createIndex = (jsonList: PdfToJSONResult[]): Promise<Object> => {
+    return addRToIndex(jsonList).then(indexer => indexer.toJSON());
 };
 
 export const readAllAsJSON = (globList: string[]): Promise<PdfToJSONResult[]> => {

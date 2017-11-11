@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2",
-    "electron": "1.7.9",
+    "electron": "^1.7.9",
     "electron-builder": "^19.42.1",
     "electron-webpack": "1.10.1",
     "electron-webpack-ts": "^1.2.0",

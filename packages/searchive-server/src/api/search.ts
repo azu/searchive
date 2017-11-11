@@ -16,15 +16,9 @@ export const searchAPI = (args: SearchiveServerArgs) => {
         const index = JSON.parse(fs.readFileSync(args.indexPath, "utf-8"));
         const searcher = new SearchiveSearcher(index);
         console.info("Search", req.params.text);
-        const results = searcher.search(req.params.text);
-        const response = results
-            .map(hit => {
-                return searcher.getDoc(hit.ref) as SearchiveDocument;
-            })
-            .filter(doc => doc !== undefined)
-            .sort((a: SearchiveDocument, b: SearchiveDocument) => {
-                return a.pageNumber - b.pageNumber;
-            });
+        const response = searcher.search(req.params.text).sort((a: SearchiveDocument, b: SearchiveDocument) => {
+            return a.pageNumber - b.pageNumber;
+        });
         res.send(200, response);
         next();
     };
