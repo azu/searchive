@@ -42,7 +42,8 @@
     "@types/restify": "^5.0.6",
     "@types/restify-errors": "^4.3.2",
     "restify": "^6.3.2",
-    "restify-errors": "^5.0.0"
+    "restify-errors": "^5.0.0",
+    "restify-cors-middleware": "^1.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.44",

@@ -34,8 +34,8 @@ export class SearchStore extends Store<SearchState> {
         if (payload instanceof SearchPatternFromIndexUseCasePayload) {
             this.setState({
                 ...this.state,
-                items: payload.index.documents,
-                filteredItems: getFilterItems(payload.index.documents)
+                items: payload.documents,
+                filteredItems: getFilterItems(payload.documents)
             });
         } else if (payload instanceof UpdateSearchFilterUseCasePayload) {
             this.setState({

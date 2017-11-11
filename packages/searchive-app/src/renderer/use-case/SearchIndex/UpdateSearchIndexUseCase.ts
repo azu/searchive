@@ -2,6 +2,7 @@
 import { Payload, UseCase } from "almin";
 
 export class UpdateSearchIndexUseCasePayload extends Payload {
+    type = "UpdateSearchIndexUseCasePayload";
     constructor(public indexPatterns: string[]) {
         super();
     }

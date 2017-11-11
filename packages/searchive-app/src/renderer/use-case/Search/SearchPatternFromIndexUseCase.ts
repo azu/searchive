@@ -1,8 +1,8 @@
 // MIT © 2017 azu
 import { Payload, UseCase } from "almin";
-import { SearchiveDocumentIndex } from "searchive-client";
+import { SearchiveDocument } from "searchive-client";
 
-export const searchFromIndex = (pattern: string): Promise<SearchiveDocumentIndex> => {
+export const searchFromIndex = (pattern: string): Promise<SearchiveDocument[]> => {
     const pass = function(response: Response): Promise<Response> {
         if (!response.ok) {
             return Promise.reject(new Error(response.statusText));
@@ -15,15 +15,17 @@ export const searchFromIndex = (pattern: string): Promise<SearchiveDocumentIndex
 };
 
 export class SearchPatternFromIndexUseCasePayload extends Payload {
-    constructor(public index: SearchiveDocumentIndex) {
+    type = "SearchPatternFromIndexUseCasePayload";
+
+    constructor(public documents: SearchiveDocument[]) {
         super();
     }
 }
 
 export class SearchPatternFromIndexUseCase extends UseCase {
     execute(pattern: string) {
-        return searchFromIndex(pattern).then(index => {
-            this.dispatch(new SearchPatternFromIndexUseCasePayload(index));
+        return searchFromIndex(pattern).then(documents => {
+            this.dispatch(new SearchPatternFromIndexUseCasePayload(documents));
         });
     }
 }

@@ -2,6 +2,8 @@
 import { Payload, UseCase } from "almin";
 
 export class UpdateSearchFilterUseCasePayload extends Payload {
+    type = "UpdateSearchFilterUseCasePayload";
+
     constructor(public filterPattern: string) {
         super();
     }

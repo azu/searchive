@@ -2,9 +2,13 @@
 import restify = require("restify");
 import { createIndexAPI } from "./api/create-index";
 import { searchAPI } from "./api/search";
-import { Next, Request, Response } from "restify";
-
+const corsMiddleware = require("restify-cors-middleware");
 const server = restify.createServer();
+const cors = corsMiddleware({
+    preflightMaxAge: 5, //Optional
+    origins: ["http://localhost:9080"]
+});
+
 server.use(
     restify.plugins.queryParser({
         mapParams: true
@@ -15,14 +19,8 @@ server.use(
         mapParams: true
     })
 );
-
-if (process.env.NODE_ENV !== "production") {
-    server.use(function crossOrigin(_req: Request, res: Response, next: Next) {
-        res.header("Access-Control-Allow-Origin", `http://localhost:9080`);
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        return next();
-    });
-}
+server.pre(cors.preflight);
+server.use(cors.actual);
 
 export interface SearchiveServerArgs {
     indexPath: string;
