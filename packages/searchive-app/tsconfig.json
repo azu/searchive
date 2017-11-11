@@ -9,6 +9,7 @@
     "sourceMap": true,
     "declaration": false,
     "jsx": "react",
+    "skipLibCheck": true,
     "lib": [
       "es2017",
       "dom"

@@ -3,7 +3,7 @@ import { Payload, UseCase } from "almin";
 import { SearchiveDocumentIndex } from "searchive-client";
 
 export const requestToUpdateDataBaseIndex = (patterns: string[]): Promise<SearchiveDocumentIndex> => {
-    const pass = function(response: Response): Promise<Response> {
+    const pass = function<T extends Response>(response: T): Promise<T> {
         if (!response.ok) {
             return Promise.reject(new Error(response.statusText));
         }
@@ -11,16 +11,12 @@ export const requestToUpdateDataBaseIndex = (patterns: string[]): Promise<Search
     };
     return fetch(`http://localhost:12347/api/create-index`, {
         method: "post",
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        },
         body: JSON.stringify({
             fileGlob: patterns
         })
     })
         .then(pass)
-        .then(res => res.json());
+        .then((res: Response) => res.json());
 };
 
 export class StartRequestForUpdateIndexPatternsUseCasPayload extends Payload {

@@ -35,6 +35,7 @@ export class SearchIndexStore extends Store<SearchIndexState> {
             | DismissIndexPanelUseCasePayload
             | StartRequestForUpdateIndexPatternsUseCasPayload
             | FinishRequestForUpdateIndexPatternsUseCasPayload
+            | any
     ) {
         if (payload instanceof UpdateSearchIndexUseCasePayload) {
             this.setState({

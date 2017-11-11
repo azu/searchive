@@ -50,6 +50,7 @@ app.on("activate", () => {
 app.on("ready", () => {
     mainWindow = createMainWindow();
     const indexPath = path.join(app.getPath("userData"), "index.json");
+    console.log("Index Path: ", indexPath);
     server = new SearchiveServer({
         indexPath: indexPath
     });
