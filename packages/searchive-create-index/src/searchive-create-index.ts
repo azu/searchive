@@ -59,7 +59,6 @@ export const createIndex = (globList: string[]): PProgressInstance<SearchiveDocu
                     })
                     .then(() => {
                         currentProgress++;
-                        console.log(currentProgress + "/" + totalNumber);
                         progress(currentProgress / totalNumber);
                     })
             );
