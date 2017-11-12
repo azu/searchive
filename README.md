@@ -7,6 +7,8 @@ Search all my documents{PDF}.
 [searchive-app](./packages/searchive-app) is an Electron app.
 This app include client and server.
 
+[![App](https://media.giphy.com/media/3o6fIYo3aDtasisB2M/giphy.gif)](http://www.giphy.com/gifs/3o6fIYo3aDtasisB2M)
+
 ### Usage
 
 Launch by `yarn run app`.
