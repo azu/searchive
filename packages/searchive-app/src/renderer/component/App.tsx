@@ -90,7 +90,10 @@ export class App extends React.Component<typeof appStoreGroup.state & AppProps, 
                 </div>
                 <div>
                     <span>検索結果: {this.props.search.filteredItems.length}件</span>
-                    <SearchResultList items={this.props.search.filteredItems} />
+                    <SearchResultList
+                        items={this.props.search.filteredItems}
+                        highLightKeyWords={this.props.search.highLightKeyWords}
+                    />
                 </div>
             </div>
         );
