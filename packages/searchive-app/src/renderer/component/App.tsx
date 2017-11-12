@@ -11,6 +11,7 @@ import { SearchIndexPanel } from "./SearchIndexPanel/SearchIndexPanel";
 import { DismissIndexPanelUseCase, ShowIndexPanelUseCase } from "../use-case/SearchIndex/ToggleIndexPanelUseCase";
 import { RequestForUpdateIndexPatternsUseCase } from "../use-case/SearchIndex/RequestForUpdateIndexPatternsUseCase";
 import { CommandBar, ContextualMenuItemType } from "office-ui-fabric-react";
+import { RefreshSearchIndexUseCase } from "../use-case/SearchIndex/RefreshSearchIndexUseCase";
 
 export interface AppProps {
     context: Context<any>;
@@ -41,6 +42,14 @@ export class App extends React.Component<typeof appStoreGroup.state & AppProps, 
         this.props.context.useCase(new SearchPatternFromIndexUseCase()).executor(useCase => useCase.execute(text));
     };
 
+    syncIndexPattern = () => {
+        this.props.context.useCase(new RefreshSearchIndexUseCase()).executor(useCase => useCase.execute());
+    };
+
+    componentDidMount() {
+        this.syncIndexPattern();
+    }
+
     render() {
         return (
             <div className="App">
@@ -67,6 +76,12 @@ export class App extends React.Component<typeof appStoreGroup.state & AppProps, 
                                         name: "Open Index setting",
                                         icon: "Settings",
                                         onClick: this.onShowIndexPanel
+                                    },
+                                    {
+                                        key: "index.sync",
+                                        name: "Sync Index pattern",
+                                        icon: "Settings",
+                                        onClick: this.syncIndexPattern
                                     },
                                     {
                                         key: "divider_1",

@@ -9,7 +9,7 @@ export interface SearchIndexBarProps {
 
 export class SearchIndexBar extends React.Component<SearchIndexBarProps, {}> {
     state = {
-        value: ""
+        value: this.indexToString(this.props.indexPatterns)
     };
 
     private indexToString(indexes: string[] | string): string {

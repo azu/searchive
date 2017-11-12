@@ -3,6 +3,7 @@ import restify = require("restify");
 import { createIndexAPI } from "./api/create-index";
 import { searchAPI } from "./api/search";
 import { WebSocketServer } from "./websocket/webscoket";
+import { indexPatternAPI } from "./api/index-pattern";
 
 const corsMiddleware = require("restify-cors-middleware");
 const server = restify.createServer();
@@ -39,8 +40,9 @@ export class SearchiveServer {
     }
 
     start() {
-        server.post("/api/create-index", createIndexAPI(this.args));
+        server.get("/api/index-patterns", indexPatternAPI(this.args));
         server.get("/api/search", searchAPI(this.args));
+        server.post("/api/create-index", createIndexAPI(this.args));
         server.listen(this.port, function() {
             console.log(`Server started on port http://localhost:${server.address().port} :)`);
             console.log(`WebSocket Server started on port ws://localhost:${server.address().port} :)`);
