@@ -2,6 +2,8 @@
 
 Web API Interface for sharing Client and Server.
 
+- Server: [searchive-server](../searchive-server)
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):

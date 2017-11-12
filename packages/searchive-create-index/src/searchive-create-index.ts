@@ -33,15 +33,21 @@ const writePdfJSONToIndex = async (indexer: SearchiveIndexer, result: PdfToJSONR
     });
 };
 
+export interface createIndexOptions {
+    // Each progress timeout(msec). Default: 120 * 1000
+    timeout?: number;
+}
+
 /**
  * create index and return PProgressInstance.
  * PProgressInstance that can be observe progressing by `PProgressInstance.onProgress(number => {}):`
- * @param {string[]} globList
- * @returns {PProgressInstance<SearchiveDocumentIndex>}
  */
-export const createIndex = (globList: string[]): PProgressInstance<SearchiveDocumentIndex> => {
+export const createIndex = (
+    globList: string[],
+    options: createIndexOptions = {}
+): PProgressInstance<SearchiveDocumentIndex> => {
     const indexer = new SearchiveIndexer();
-    const READ_TIMEOUT = 60 * 1000;
+    const READ_TIMEOUT = options.timeout || 120 * 1000;
     return new PProgress(async (resolve: any, reject: any, progress: (progress: number) => void) => {
         const filePathList = await expandToFileList(globList);
         let currentProgress = 0;

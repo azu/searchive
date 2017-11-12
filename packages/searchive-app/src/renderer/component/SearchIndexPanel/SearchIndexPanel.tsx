@@ -1,12 +1,13 @@
 // MIT © 2017 azu
 import * as React from "react";
-import { Label, Panel, PanelType, Spinner, SpinnerSize } from "office-ui-fabric-react";
+import { Label, Panel, PanelType, ProgressIndicator } from "office-ui-fabric-react";
 import { SearchIndexBar } from "../SearchIndexBar/SearchIndexBar";
 
 export interface SearchIndexPanelProps {
     indexPatterns: string[];
     isOpen: boolean;
     isUpdatingDatabase: boolean;
+    updatingProgress: number;
     onDismiss: () => void;
     onSubmit: (indexPatterns: string[]) => void;
 }
@@ -31,7 +32,11 @@ export class SearchIndexPanel extends React.Component<SearchIndexPanelProps, Sea
                 {this.props.isUpdatingDatabase ? (
                     <div>
                         <Label>Updating database</Label>
-                        <Spinner size={SpinnerSize.large} />
+                        <ProgressIndicator
+                            label="Updating database"
+                            description="Update indexing..."
+                            percentComplete={this.props.updatingProgress}
+                        />
                     </div>
                 ) : null}
             </Panel>

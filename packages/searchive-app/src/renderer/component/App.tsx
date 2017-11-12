@@ -46,6 +46,7 @@ export class App extends React.Component<typeof appStoreGroup.state & AppProps, 
             <div className="App">
                 <SearchIndexPanel
                     isOpen={this.props.index.isPanelShown}
+                    updatingProgress={this.props.index.updatingProgress}
                     isUpdatingDatabase={this.props.index.isUpdatingDatabase}
                     indexPatterns={this.props.index.indexPatterns}
                     onDismiss={this.onDismissIndexPanel}

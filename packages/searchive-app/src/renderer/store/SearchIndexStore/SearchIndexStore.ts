@@ -7,12 +7,15 @@ import {
 } from "../../use-case/SearchIndex/ToggleIndexPanelUseCase";
 import {
     FinishRequestForUpdateIndexPatternsUseCasPayload,
+    ProgressRequestForUpdateIndexPatternsUseCasPayload,
     StartRequestForUpdateIndexPatternsUseCasPayload
 } from "../../use-case/SearchIndex/RequestForUpdateIndexPatternsUseCase";
 
 export interface SearchIndexState {
     indexPatterns: string[];
     isPanelShown: boolean;
+    // 0...1
+    updatingProgress: number;
     isUpdatingDatabase: boolean;
 }
 
@@ -24,6 +27,7 @@ export class SearchIndexStore extends Store<SearchIndexState> {
         this.state = {
             indexPatterns: [],
             isPanelShown: false,
+            updatingProgress: 0,
             isUpdatingDatabase: false
         };
     }
@@ -56,6 +60,11 @@ export class SearchIndexStore extends Store<SearchIndexState> {
             this.setState({
                 ...this.state,
                 isUpdatingDatabase: true
+            });
+        } else if (payload instanceof ProgressRequestForUpdateIndexPatternsUseCasPayload) {
+            this.setState({
+                ...this.state,
+                updatingProgress: payload.progress
             });
         } else if (payload instanceof FinishRequestForUpdateIndexPatternsUseCasPayload) {
             this.setState({

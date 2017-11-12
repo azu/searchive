@@ -1,30 +1,53 @@
 // MIT © 2017 azu
 import { Payload, UseCase } from "almin";
 import { SearchiveDocumentIndex } from "searchive-client";
+import { WebSocketTypes } from "searchive-web-api-interface";
 
-export const requestToUpdateDataBaseIndex = (patterns: string[]): Promise<SearchiveDocumentIndex> => {
-    const pass = function<T extends Response>(response: T): Promise<T> {
-        if (!response.ok) {
-            return Promise.reject(new Error(response.statusText));
-        }
-        return Promise.resolve(response);
-    };
-    const headers = new Headers();
-    headers.append("Accept", "application/json");
-    headers.append("Content-Type", "application/json");
-    return fetch(`http://localhost:12347/api/create-index`, {
-        method: "post",
-        headers: headers,
-        body: JSON.stringify({
-            fileGlob: patterns
-        })
-    })
-        .then(pass)
-        .then((res: Response) => res.json());
+export const requestToUpdateDataBaseIndex = (
+    patterns: string[],
+    onProgress: ((progress: number) => void)
+): Promise<SearchiveDocumentIndex> => {
+    return new Promise((resolve, reject) => {
+        // WebSocket
+        const socket = new WebSocket("ws://localhost:12347");
+        socket.addEventListener("open", function() {
+            socket.addEventListener("message", function(event) {
+                try {
+                    const message: WebSocketTypes.ServerToClientMessageTypes = JSON.parse(event.data);
+                    if (message.type === WebSocketTypes.WebSocketServerToClientMessageType.progress) {
+                        onProgress(message.progress);
+                    } else if (message.type === WebSocketTypes.WebSocketServerToClientMessageType.completeIndexing) {
+                        resolve();
+                        socket.close();
+                    } else if (message.type === WebSocketTypes.WebSocketServerToClientMessageType.error) {
+                        throw new Error(message.message);
+                    }
+                } catch (error) {
+                    socket.close();
+                    reject(error);
+                }
+            });
+
+            socket.send(
+                JSON.stringify({
+                    type: WebSocketTypes.WebSocketClientToServerMessageType.createIndex,
+                    fileGlob: patterns
+                })
+            );
+        });
+    });
 };
 
 export class StartRequestForUpdateIndexPatternsUseCasPayload extends Payload {
     type = "StartRequestForUpdateIndexPatternsUseCasPayload";
+}
+
+export class ProgressRequestForUpdateIndexPatternsUseCasPayload extends Payload {
+    type = "ProgressRequestForUpdateIndexPatternsUseCasPayload";
+
+    constructor(public progress: number) {
+        super();
+    }
 }
 
 export class FinishRequestForUpdateIndexPatternsUseCasPayload extends Payload {
@@ -34,7 +57,9 @@ export class FinishRequestForUpdateIndexPatternsUseCasPayload extends Payload {
 export class RequestForUpdateIndexPatternsUseCase extends UseCase {
     execute(patterns: string[]) {
         this.dispatch(new StartRequestForUpdateIndexPatternsUseCasPayload());
-        return requestToUpdateDataBaseIndex(patterns)
+        return requestToUpdateDataBaseIndex(patterns, progress => {
+            this.dispatch(new ProgressRequestForUpdateIndexPatternsUseCasPayload(progress));
+        })
             .then(() => {
                 this.dispatch(new FinishRequestForUpdateIndexPatternsUseCasPayload());
             })
