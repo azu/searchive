@@ -35,6 +35,8 @@
   "dependencies": {
     "searchive-client": "^1.0.0",
     "p-progress": "^0.1.1",
+    "@types/p-timeout": "^1.2.0",
+    "p-timeout": "^1.2.0",
     "@types/p-limit": "^1.0.0",
     "p-limit": "^1.0.0",
     "pdf-to-json": "^1.0.0",

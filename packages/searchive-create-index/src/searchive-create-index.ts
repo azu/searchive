@@ -1,6 +1,7 @@
 // MIT © 2017 azu
 import globby = require("globby");
 import pLimit = require("p-limit");
+import pTimeout = require("p-timeout");
 import { pdfToJSON, PdfToJSONResult } from "pdf-to-json";
 import * as os from "os";
 import { SearchiveDocumentIndex, SearchiveIndexer } from "searchive-client";
@@ -40,19 +41,28 @@ const writePdfJSONToIndex = async (indexer: SearchiveIndexer, result: PdfToJSONR
  */
 export const createIndex = (globList: string[]): PProgressInstance<SearchiveDocumentIndex> => {
     const indexer = new SearchiveIndexer();
+    const READ_TIMEOUT = 60 * 1000;
     return new PProgress(async (resolve: any, reject: any, progress: (progress: number) => void) => {
         const filePathList = await expandToFileList(globList);
         let currentProgress = 0;
         const totalNumber = filePathList.length;
         const promises = filePathList.map(filePath => {
-            return readPdfJSON(filePath)
-                .then(result => {
-                    return writePdfJSONToIndex(indexer, result);
-                })
-                .then(() => {
-                    currentProgress++;
-                    progress(currentProgress / totalNumber);
-                });
+            return (
+                pTimeout(readPdfJSON(filePath), READ_TIMEOUT)
+                    .then(result => {
+                        return writePdfJSONToIndex(indexer, result);
+                    })
+                    // ignore error
+                    .catch(error => {
+                        console.error("Error in filePath:", filePath);
+                        console.error(error);
+                    })
+                    .then(() => {
+                        currentProgress++;
+                        console.log(currentProgress + "/" + totalNumber);
+                        progress(currentProgress / totalNumber);
+                    })
+            );
         });
         return Promise.all(promises).then(resolve, reject);
     });
