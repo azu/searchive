@@ -9,8 +9,12 @@ export const requestToUpdateDataBaseIndex = (patterns: string[]): Promise<Search
         }
         return Promise.resolve(response);
     };
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-Type", "application/json");
     return fetch(`http://localhost:12347/api/create-index`, {
         method: "post",
+        headers: headers,
         body: JSON.stringify({
             fileGlob: patterns
         })

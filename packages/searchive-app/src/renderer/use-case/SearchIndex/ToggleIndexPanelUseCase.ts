@@ -1,10 +1,11 @@
 // MIT © 2017 azu
 import { Payload, UseCase } from "almin";
 
-export class DismissIndexPanelUseCasePayload extends Payload {}
+export class DismissIndexPanelUseCasePayload extends Payload {
+    type = "DismissIndexPanelUseCase";
+}
 
 export class DismissIndexPanelUseCase extends UseCase {
-    type = "DismissIndexPanelUseCase";
     execute() {
         this.dispatch(new DismissIndexPanelUseCasePayload());
     }

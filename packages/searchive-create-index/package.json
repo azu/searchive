@@ -34,6 +34,7 @@
   "homepage": "https://github.com/azu/searchive/tree/master/pacakges/searchive-create-index/",
   "dependencies": {
     "searchive-client": "^1.0.0",
+    "p-progress": "^0.1.1",
     "@types/p-limit": "^1.0.0",
     "p-limit": "^1.0.0",
     "pdf-to-json": "^1.0.0",

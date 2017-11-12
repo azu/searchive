@@ -49,7 +49,7 @@ app.on("activate", () => {
 // Create main BrowserWindow when electron is ready
 app.on("ready", () => {
     mainWindow = createMainWindow();
-    const indexPath = path.join(app.getPath("userData"), "index.json");
+    const indexPath = path.join(app.getPath("userData"), "searchive-app.index.json");
     console.log("Index Path: ", indexPath);
     server = new SearchiveServer({
         indexPath: indexPath
