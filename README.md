@@ -2,6 +2,18 @@
 
 Search all my documents{PDF}.
 
+## App
+
+[searchive-app](./packages/searchive-app) is an Electron app.
+This app include client and server.
+
+### Usage
+
+Launch by `yarn run app`.
+
+    yarn install
+    yarn run app
+
 ## Modules
 
 This repository is a monorepo.
@@ -11,6 +23,8 @@ This repository is a monorepo.
 | [`pdf-to-json`](./packages/pdf-to-json) | [![npm](https://img.shields.io/npm/v/pdf-to-json.svg?style=flat-square)](https://www.npmjs.com/package/pdf-to-json)
 | [`searchive-cli`](./packages/searchive-cli) | [![npm](https://img.shields.io/npm/v/searchive-cli.svg?style=flat-square)](https://www.npmjs.com/package/searchive-cli)
 | [`searchive-client`](./packages/searchive-client) | [![npm](https://img.shields.io/npm/v/searchive-client.svg?style=flat-square)](https://www.npmjs.com/package/searchive-client)
+| [`searchive-server`](./packages/searchive-server) | [![npm](https://img.shields.io/npm/v/searchive-server.svg?style=flat-square)](https://www.npmjs.com/package/searchive-server)
+| [`searchive-web-api-interface`](./packages/searchive-web-api-interface) | [![npm](https://img.shields.io/npm/v/searchive-web-api-interface.svg?style=flat-square)](https://www.npmjs.com/package/searchive-web-api-interface)
 | [`searchive-create-index`](./packages/searchive-create-index) | [![npm](https://img.shields.io/npm/v/searchive-create-index.svg?style=flat-square)](https://www.npmjs.com/package/searchive-create-index)
 
 ## Development

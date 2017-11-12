@@ -19,7 +19,6 @@
     "searchive-search": "bin/searchive-search.js"
   },
   "scripts": {
-    "test": "mocha 'test/**/*.ts'",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",

@@ -10,23 +10,14 @@
   "name": "searchive",
   "version": "1.0.0",
   "description": "Search all my documents",
-  "electronWebpack": {
-    "main": {
-      "sourceDirectory": "src/main"
-    },
-    "server": {
-      "sourceDirectory": "src/server"
-    },
-    "renderer": {
-      "sourceDirectory": "src/renderer"
-    }
-  },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "prepublish": "yarn run bootstrap",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "precommit": "lint-staged",
-    "postcommit": "git reset"
+    "postcommit": "git reset",
+    "test": "lerna run test",
+    "app": "lerna run dev --scope searchive-app"
   },
   "keywords": [
     "search",

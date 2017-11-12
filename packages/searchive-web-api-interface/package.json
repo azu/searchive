@@ -15,7 +15,6 @@
   "description": "Web API Interface for sharing Client and Server.",
   "main": "lib/searchive-web-api-interface.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",

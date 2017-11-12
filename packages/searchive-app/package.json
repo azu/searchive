@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "electron-webpack-quick-start",
+  "name": "searchive-app",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,8 @@
     "@types/react-dom": "^16.0.3",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
-    "source-map-support": "^0.5.0"
+    "source-map-support": "^0.5.0",
+    "lodash.throttle": "^4.1.1"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2",

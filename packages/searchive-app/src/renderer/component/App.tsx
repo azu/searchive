@@ -13,14 +13,16 @@ import { RequestForUpdateIndexPatternsUseCase } from "../use-case/SearchIndex/Re
 import { CommandBar, ContextualMenuItemType } from "office-ui-fabric-react";
 import { RefreshSearchIndexUseCase } from "../use-case/SearchIndex/RefreshSearchIndexUseCase";
 
+const throttle = require("lodash.throttle");
+
 export interface AppProps {
     context: Context<any>;
 }
 
 export class App extends React.Component<typeof appStoreGroup.state & AppProps, {}> {
-    onChangedFilter = (filterValue: string) => {
+    onChangedFilter = throttle((filterValue: string) => {
         this.props.context.useCase(new UpdateSearchFilterUseCase()).executor(useCase => useCase.execute(filterValue));
-    };
+    }, 700);
 
     onClear = () => {};
 
