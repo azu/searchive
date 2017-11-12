@@ -2,7 +2,9 @@
 import { UseCase } from "almin";
 import { UpdateSearchIndexUseCase } from "./UpdateSearchIndexUseCase";
 
-export const fetchIndexPattern = (): Promise<{
+export const fetchIndexPattern = (
+    token: string
+): Promise<{
     indexPatterns: string[];
 }> => {
     const pass = function(response: Response): Promise<Response> {
@@ -11,14 +13,20 @@ export const fetchIndexPattern = (): Promise<{
         }
         return Promise.resolve(response);
     };
-    return fetch(`http://localhost:12347/api/index-patterns`)
+
+    const headers = new Headers();
+    headers.append("Authorization", token);
+    return fetch(`http://localhost:12347/api/index-patterns`, {
+        headers
+    })
         .then(pass)
         .then(res => res.json());
 };
 
 export class RefreshSearchIndexUseCase extends UseCase {
     execute() {
-        return fetchIndexPattern().then(response => {
+        const token = require("electron").remote.getGlobal("searchiveSharedToken");
+        return fetchIndexPattern(token).then(response => {
             this.context
                 .useCase(new UpdateSearchIndexUseCase())
                 .executor(useCase => useCase.execute(response.indexPatterns));

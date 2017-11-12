@@ -30,7 +30,8 @@ export class SearchiveServer {
         // middleware
         const cors = corsMiddleware({
             preflightMaxAge: 5, // Optional
-            origins: ["http://localhost:9080"]
+            origins: ["http://localhost:9080"],
+            allowHeaders: ["Authorization"]
         });
 
         server.use(

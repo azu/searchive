@@ -9,6 +9,21 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 let mainWindow: BrowserWindow | null;
 let server: SearchiveServer | null;
 
+const randomToken = (): string => {
+    return require("crypto")
+        .randomBytes(8)
+        .toString("hex");
+};
+declare global {
+    namespace NodeJS {
+        interface Global {
+            searchiveSharedToken: string;
+        }
+    }
+}
+// Shared Token
+global.searchiveSharedToken = randomToken();
+
 function createMainWindow() {
     // Construct new BrowserWindow
     const window = new BrowserWindow();
@@ -52,7 +67,8 @@ app.on("ready", () => {
     const indexPath = path.join(app.getPath("userData"), "searchive-app.index.json");
     console.log("Index Path: ", indexPath);
     server = new SearchiveServer({
-        indexPath: indexPath
+        indexPath: indexPath,
+        secretKey: global.searchiveSharedToken
     });
     server.start();
 });

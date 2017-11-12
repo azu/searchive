@@ -4,12 +4,13 @@ import { SearchiveDocumentIndex } from "searchive-client";
 import { WebSocketTypes } from "searchive-web-api-interface";
 
 export const requestToUpdateDataBaseIndex = (
+    token: string,
     patterns: string[],
     onProgress: ((progress: number) => void)
 ): Promise<SearchiveDocumentIndex> => {
     return new Promise((resolve, reject) => {
         // WebSocket
-        const socket = new WebSocket("ws://localhost:12347");
+        const socket = new WebSocket(`ws://localhost:12347?token=${encodeURIComponent(token)}`);
         socket.addEventListener("open", function() {
             socket.addEventListener("message", function(event) {
                 try {
@@ -56,8 +57,9 @@ export class FinishRequestForUpdateIndexPatternsUseCasPayload extends Payload {
 
 export class RequestForUpdateIndexPatternsUseCase extends UseCase {
     execute(patterns: string[]) {
+        const token = require("electron").remote.getGlobal("searchiveSharedToken");
         this.dispatch(new StartRequestForUpdateIndexPatternsUseCasPayload());
-        return requestToUpdateDataBaseIndex(patterns, progress => {
+        return requestToUpdateDataBaseIndex(token, patterns, progress => {
             this.dispatch(new ProgressRequestForUpdateIndexPatternsUseCasPayload(progress));
         })
             .then(() => {
