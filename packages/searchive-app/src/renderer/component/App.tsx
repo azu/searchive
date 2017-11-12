@@ -78,21 +78,6 @@ export class App extends React.Component<typeof appStoreGroup.state & AppProps, 
                                         name: "Open Index setting",
                                         icon: "Settings",
                                         onClick: this.onShowIndexPanel
-                                    },
-                                    {
-                                        key: "index.sync",
-                                        name: "Sync Index pattern",
-                                        icon: "Settings",
-                                        onClick: this.syncIndexPattern
-                                    },
-                                    {
-                                        key: "divider_1",
-                                        itemType: ContextualMenuItemType.Divider
-                                    },
-                                    {
-                                        key: "index.refresh",
-                                        name: "Refresh current index",
-                                        icon: "Refresh"
                                     }
                                 ]
                             }
