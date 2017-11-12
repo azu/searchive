@@ -63,6 +63,8 @@ export const createIndex = (globList: string[]): PProgressInstance<SearchiveDocu
                     })
             );
         });
-        return Promise.all(promises).then(resolve, reject);
+        return Promise.all(promises).then(() => {
+            return resolve(indexer.toIndex(globList));
+        }, reject);
     });
 };

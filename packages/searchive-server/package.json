@@ -18,6 +18,7 @@
     "searchive-server": "./bin/searchive-server.js"
   },
   "scripts": {
+    "start": "node ./bin/searchive-server.js --index-path ./index.json",
     "test": "mocha 'test/**/*.ts'",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
@@ -37,8 +38,11 @@
   "homepage": "https://github.com/azu/searchive/tree/master/packages/searchive-server/",
   "dependencies": {
     "meow": "^3.7.0",
+    "searchive-web-api-interface": "^1.0.0",
     "searchive-client": "^1.0.0",
     "searchive-create-index": "^1.0.0",
+    "@types/ws": "^3.2.0",
+    "ws": "^3.3.1",
     "@types/restify": "^5.0.6",
     "@types/restify-errors": "^4.3.2",
     "restify": "^6.3.2",

@@ -14,7 +14,15 @@ describe("searchive-create-index", () => {
             assert(typeof progress === "number" && progress >= 0);
             progressValues.push(progress);
         });
-        await indexingPromise;
+        const index = await indexingPromise;
         assert.deepEqual(progressValues, [0.5, 1]);
+        assert.ok(Array.isArray(index.indexPatterns));
+        index.indexPatterns.forEach(pattern => {
+            assert.equal(typeof pattern, "string");
+        });
+        assert.ok(Array.isArray(index.documents));
+        index.documents.forEach(document => {
+            assert.equal(typeof document.id, "string");
+        });
     });
 });

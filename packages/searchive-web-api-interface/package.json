@@ -1,0 +1,46 @@
+{
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "name": "searchive-web-api-interface",
+  "version": "1.0.0",
+  "description": "Web API Interface for sharing Client and Server.",
+  "main": "lib/searchive-web-api-interface.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "watch": "tsc -p . --watch",
+    "prepublish": "npm run --if-present build"
+  },
+  "keywords": [
+    "serchive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/searchive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azu/searchive/issues"
+  },
+  "homepage": "https://github.com/azu/searchive/tree/master/packages/searchive-web-api-interface/",
+  "devDependencies": {
+    "@types/node": "^8.0.51",
+    "cross-env": "^5.1.1",
+    "prettier": "^1.8.2",
+    "typescript": "^2.6.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "types": "lib/searchive-web-api-interface.d.ts"
+}

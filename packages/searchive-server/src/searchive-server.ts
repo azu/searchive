@@ -2,6 +2,8 @@
 import restify = require("restify");
 import { createIndexAPI } from "./api/create-index";
 import { searchAPI } from "./api/search";
+import { WebSocketServer } from "./websocket/webscoket";
+
 const corsMiddleware = require("restify-cors-middleware");
 const server = restify.createServer();
 const cors = corsMiddleware({
@@ -24,20 +26,30 @@ server.use(cors.actual);
 
 export interface SearchiveServerArgs {
     indexPath: string;
+    port?: number;
 }
 
 export class SearchiveServer {
-    constructor(private args: SearchiveServerArgs) {}
+    private port: number;
+    private wsServer: WebSocketServer;
 
-    start(PORT: number = 12347) {
+    constructor(private args: SearchiveServerArgs) {
+        this.port = args.port !== undefined ? args.port : 12347;
+        this.wsServer = new WebSocketServer(args, server);
+    }
+
+    start() {
         server.post("/api/create-index", createIndexAPI(this.args));
         server.get("/api/search", searchAPI(this.args));
-        server.listen(PORT, function() {
-            console.log("%s listening at %s", server.name, server.url);
+        server.listen(this.port, function() {
+            console.log(`Server started on port http://localhost:${server.address().port} :)`);
+            console.log(`WebSocket Server started on port ws://localhost:${server.address().port} :)`);
         });
+        this.wsServer.start();
     }
 
     close() {
+        this.wsServer.close();
         server.close();
     }
 }
