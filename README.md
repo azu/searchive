@@ -30,7 +30,7 @@ This repository is a monorepo.
 ## Development
 
     yarn install
-    yarn run boostrap
+    yarn run bootstrap
 
 ## Changelog
 
