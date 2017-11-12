@@ -9,6 +9,7 @@ const cli = meow(`
 
 	Options
 	  --index-path path to index.json that are written and read
+	  --secretKey Token to authorize(Optional)
 
 	Examples
 	  $ searchive-index --index-path /path/to/index.json
@@ -20,9 +21,13 @@ const cli = meow(`
 	...
 }
 */
+if (!cli.flags.indexPath) {
+    cli.showHelp(1);
+}
 const SearchiveServer = require("../lib/searchive-server").SearchiveServer;
 const server = new SearchiveServer({
-    indexPath: path.resolve(process.cwd(), cli.flags.indexPath)
+    indexPath: path.resolve(process.cwd(), cli.flags.indexPath),
+    secretKey: cli.flags.secretKey
 });
 server.start();
 process.on("exit", function() {

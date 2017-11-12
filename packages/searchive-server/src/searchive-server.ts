@@ -1,33 +1,20 @@
 // MIT © 2017 azu
 import restify = require("restify");
+import { Request, Response, Next } from "restify";
 import { createIndexAPI } from "./api/create-index";
 import { searchAPI } from "./api/search";
 import { WebSocketServer } from "./websocket/webscoket";
 import { indexPatternAPI } from "./api/index-pattern";
+import { NotAuthorizedError } from "restify-errors";
 
 const corsMiddleware = require("restify-cors-middleware");
 const server = restify.createServer();
-const cors = corsMiddleware({
-    preflightMaxAge: 5, //Optional
-    origins: ["http://localhost:9080"]
-});
-
-server.use(
-    restify.plugins.queryParser({
-        mapParams: true
-    })
-);
-server.use(
-    restify.plugins.bodyParser({
-        mapParams: true
-    })
-);
-server.pre(cors.preflight);
-server.use(cors.actual);
 
 export interface SearchiveServerArgs {
     indexPath: string;
     port?: number;
+    // auth token
+    secretKey?: string;
 }
 
 export class SearchiveServer {
@@ -40,6 +27,33 @@ export class SearchiveServer {
     }
 
     start() {
+        // middleware
+        const cors = corsMiddleware({
+            preflightMaxAge: 5, // Optional
+            origins: ["http://localhost:9080"]
+        });
+
+        server.use(
+            restify.plugins.queryParser({
+                mapParams: true
+            })
+        );
+        server.use(
+            restify.plugins.bodyParser({
+                mapParams: true
+            })
+        );
+        server.use((req: Request, _res: Response, next: Next) => {
+            const token = req.headers["authorization"];
+            if (this.args.secretKey && this.args.secretKey !== token) {
+                next(new NotAuthorizedError("Invalid token. Need to set Authorization: xxx"));
+            } else {
+                next();
+            }
+        });
+        server.pre(cors.preflight);
+        server.use(cors.actual);
+        // router
         server.get("/api/index-patterns", indexPatternAPI(this.args));
         server.get("/api/search", searchAPI(this.args));
         server.post("/api/create-index", createIndexAPI(this.args));
