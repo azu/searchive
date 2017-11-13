@@ -5,9 +5,11 @@ import { SearchPatternFromIndexUseCasePayload } from "../../use-case/Search/Sear
 import { UpdateSearchFilterUseCasePayload } from "../../use-case/Search/UpdateSearchFilterUseCase";
 
 export interface SearchState {
+    searchPattern: string;
     items: SearchiveDocument[];
     filteredItems: SearchiveDocument[];
     filter: undefined | string;
+    highLightKeyWords: string[];
 }
 
 export const getFilterItems = (items: SearchiveDocument[], filter?: string) => {
@@ -18,15 +20,24 @@ export const getFilterItems = (items: SearchiveDocument[], filter?: string) => {
     return searcher.search(filter);
 };
 
+export const highlightKeyWords = (searchText: string, filterText: string = ""): string[] => {
+    // searchive-client
+    const removedKeyWordsFromSearch = searchText.replace(/(AND|OR|NOT|:\w+:)/g, "");
+    const removedKeyWordsFromFilter = filterText.replace(/(AND|OR|NOT|:\w+:)/g, "");
+    return `${removedKeyWordsFromSearch} ${removedKeyWordsFromFilter}`.split(/\s+/);
+};
+
 export class SearchStore extends Store<SearchState> {
     state: SearchState;
 
     constructor() {
         super();
         this.state = {
+            searchPattern: "",
             items: [],
             filteredItems: [],
-            filter: undefined
+            filter: undefined,
+            highLightKeyWords: []
         };
     }
 
@@ -34,12 +45,15 @@ export class SearchStore extends Store<SearchState> {
         if (payload instanceof SearchPatternFromIndexUseCasePayload) {
             this.setState({
                 ...this.state,
+                searchPattern: payload.searchPattern,
+                highLightKeyWords: highlightKeyWords(payload.searchPattern, this.state.filter),
                 items: payload.documents,
                 filteredItems: getFilterItems(payload.documents)
             });
         } else if (payload instanceof UpdateSearchFilterUseCasePayload) {
             this.setState({
                 ...this.state,
+                highLightKeyWords: highlightKeyWords(this.state.searchPattern, payload.filterPattern),
                 filter: payload.filterPattern,
                 filteredItems: getFilterItems(this.state.items, payload.filterPattern)
             });

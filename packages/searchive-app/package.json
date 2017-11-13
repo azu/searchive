@@ -11,6 +11,8 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "dependencies": {
+    "react-highlight-words": "^0.10.0",
+    "pdfjs-dist-viewer-min": "^1.9.426",
     "ddd-base": "^0.3.0",
     "almin": "^0.14.0",
     "almin-logger": "^6.1.0",

@@ -21,7 +21,7 @@ export const searchFromIndex = (pattern: string, token: string): Promise<Searchi
 export class SearchPatternFromIndexUseCasePayload extends Payload {
     type = "SearchPatternFromIndexUseCasePayload";
 
-    constructor(public documents: SearchiveDocument[]) {
+    constructor(public searchPattern: string, public documents: SearchiveDocument[]) {
         super();
     }
 }
@@ -30,7 +30,7 @@ export class SearchPatternFromIndexUseCase extends UseCase {
     execute(pattern: string) {
         const token = require("electron").remote.getGlobal("searchiveSharedToken");
         return searchFromIndex(pattern, token).then(documents => {
-            this.dispatch(new SearchPatternFromIndexUseCasePayload(documents));
+            this.dispatch(new SearchPatternFromIndexUseCasePayload(pattern, documents));
         });
     }
 }
