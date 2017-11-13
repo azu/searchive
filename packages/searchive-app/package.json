@@ -13,7 +13,6 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "electronWebpack":{
-    "whiteListedModules": ["searchive-server"]
   },
   "dependencies": {
     "react-highlight-words": "^0.10.0",
