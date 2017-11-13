@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "searchive-app",
+  "description": "Search all my documents.",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
