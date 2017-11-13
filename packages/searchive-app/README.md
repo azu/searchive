@@ -1,35 +1,18 @@
-# electron-webpack-quick-start
-> A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
+# searchive-app
 
-Thanks to the power of `electron-webpack` this template comes packed with...
+[![App](https://media.giphy.com/media/3o6fIYo3aDtasisB2M/giphy.gif)](http://www.giphy.com/gifs/3o6fIYo3aDtasisB2M)
 
-* Use of [`webpack-dev-server`](https://github.com/webpack/webpack-dev-server) for development
-* HMR for both `renderer` and `main` processes
-* Use of [`babel-preset-env`](https://github.com/babel/babel-preset-env) that is automatically configured based on your `electron` version
-* Use of [`electron-builder`](https://github.com/electron-userland/electron-builder) to package and build a distributable electron application
+## Usage
 
-Make sure to check out [`electron-webpack`'s documentation](https://webpack.electron.build/) for more details.
+1. Open "Index setting"
+2. Put `/your/path/index/*.pdf`
+    - Accept [glob](https://github.com/isaacs/node-glob "node-glob") pattern.
+3. Save and Indexing
+    - Wait until finished indexing
+4. Search
 
-## Getting Started
-Simply clone down this reposity, install dependencies, and get started on your application.
 
-The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
-
-```bash
-# create a directory of your choice, and copy template using curl
-mkdir new-electron-webpack-project && cd new-electron-webpack-project
-curl -fsSL https://github.com/electron-userland/electron-webpack-quick-start/archive/master.tar.gz | tar -xz --strip-components 1
-
-# or copy template using git clone
-git clone https://github.com/electron-userland/electron-webpack-quick-start.git
-cd electron-webpack-quick-start
-rm -rf .git
-
-# install dependencies
-yarn
-```
-
-### Development Scripts
+## Development
 
 ```bash
 # run application in development mode
@@ -44,3 +27,4 @@ yarn dist
 # `yarn compile` & create unpacked build with electron-builder
 yarn dist:dir
 ```
+
