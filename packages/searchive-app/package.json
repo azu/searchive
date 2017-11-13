@@ -16,6 +16,14 @@
   },
   "electronWebpack": {},
   "build": {
+    "appId": "com.github.azu.searchive",
+    "mac": {
+      "category": "development",
+      "target": [
+        "zip",
+        "dmg"
+      ]
+    },
     "publish": [
       {
         "provider": "github",
