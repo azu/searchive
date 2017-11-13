@@ -9,10 +9,10 @@
     "start": "run-p dev",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "predist": "rimraf node_modules && yarn install",
-    "dist": "yarn compile && electron-builder",
+    "clean-install": "rimraf node_modules && yarn install",
+    "dist": "yarn clean-install && yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "release": "electron-builder --publish always"
+    "release": "yarn clean-install && electron-builder --publish always"
   },
   "electronWebpack": {},
   "build": {
