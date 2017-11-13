@@ -10,7 +10,7 @@ import { SearchPatternFromIndexUseCase } from "../use-case/Search/SearchPatternF
 import { SearchIndexPanel } from "./SearchIndexPanel/SearchIndexPanel";
 import { DismissIndexPanelUseCase, ShowIndexPanelUseCase } from "../use-case/SearchIndex/ToggleIndexPanelUseCase";
 import { RequestForUpdateIndexPatternsUseCase } from "../use-case/SearchIndex/RequestForUpdateIndexPatternsUseCase";
-import { CommandBar, ContextualMenuItemType } from "office-ui-fabric-react";
+import { CommandBar } from "office-ui-fabric-react";
 import { RefreshSearchIndexUseCase } from "../use-case/SearchIndex/RefreshSearchIndexUseCase";
 
 const throttle = require("lodash.throttle");
