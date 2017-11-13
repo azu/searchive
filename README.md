@@ -9,6 +9,12 @@ This app include client and server.
 
 [![App](https://media.giphy.com/media/3o6fIYo3aDtasisB2M/giphy.gif)](http://www.giphy.com/gifs/3o6fIYo3aDtasisB2M)
 
+## Install
+
+Install searchive app from [release page](https://github.com/azu/searchive/releases)
+
+- Download from [Latest Release](https://github.com/azu/searchive/releases/latest)
+
 ### Usage
 
 Launch by `yarn run app`.
