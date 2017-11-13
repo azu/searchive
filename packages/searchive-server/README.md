@@ -2,6 +2,12 @@
 
 Searchive API Server.
 
+## Related
+
+[searchive-web-api-interface](../searchive-web-api-interface) provide API interface.
+It aim to share interface between server and client.
+
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
@@ -10,7 +16,10 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+### `GET /api/index-patterns`
+### `GET /api/search`
+### `POST /api/create-index`
+### `WebSocket "create-index"`
 
 ## Changelog
 
