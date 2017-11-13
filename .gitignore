@@ -86,3 +86,4 @@ packages/*/lib/
 packages/*/yarn.lock
 packages/*/index.json
 /lib/
+!/packages/searchive-app/build/
