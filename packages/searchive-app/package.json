@@ -3,7 +3,7 @@
   "name": "searchive-app",
   "description": "Search all my documents.",
   "author": "azu <azuciao@gmail.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "scripts": {
     "start": "run-p dev",
