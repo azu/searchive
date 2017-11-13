@@ -3,7 +3,7 @@
   "name": "searchive-app",
   "description": "Search all my documents.",
   "author": "azu <azuciao@gmail.com>",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "scripts": {
     "start": "run-p dev",
@@ -52,7 +52,7 @@
     "react-highlight-words": "^0.10.0",
     "searchive-client": "^0.1.0",
     "searchive-create-index": "^0.1.0",
-    "searchive-server": "^0.1.0",
+    "searchive-server": "^0.1.5",
     "searchive-web-api-interface": "^0.1.0",
     "source-map-support": "^0.5.0"
   },
