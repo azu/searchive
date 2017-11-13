@@ -2,6 +2,7 @@
 import { app, BrowserWindow, shell, Menu } from "electron";
 import { SearchiveServer } from "searchive-server";
 
+const autoUpdater = require("electron-updater").autoUpdater;
 const defaultMenu = require("electron-default-menu");
 import * as path from "path";
 
@@ -76,4 +77,6 @@ app.on("ready", () => {
         secretKey: global.searchiveSharedToken
     });
     server.start();
+    // auto update
+    autoUpdater.checkForUpdatesAndNotify();
 });
