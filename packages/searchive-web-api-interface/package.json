@@ -11,7 +11,7 @@
     "src/"
   ],
   "name": "searchive-web-api-interface",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Web API Interface for sharing Client and Server.",
   "main": "lib/searchive-web-api-interface.js",
   "scripts": {

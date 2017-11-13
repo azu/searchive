@@ -11,7 +11,7 @@
     "src/"
   ],
   "name": "searchive-create-index",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "create search index",
   "main": "lib/searchive-create-index.js",
   "scripts": {
@@ -33,15 +33,15 @@
   },
   "homepage": "https://github.com/azu/searchive/tree/master/pacakges/searchive-create-index/",
   "dependencies": {
-    "searchive-client": "^1.0.0",
-    "p-progress": "^0.1.1",
-    "@types/p-timeout": "^1.2.0",
-    "p-timeout": "^1.2.0",
+    "@types/globby": "^6.1.0",
     "@types/p-limit": "^1.0.0",
-    "p-limit": "^1.0.0",
-    "pdf-to-json": "^1.0.0",
+    "@types/p-timeout": "^1.2.0",
     "globby": "^6.1.0",
-    "@types/globby": "^6.1.0"
+    "p-limit": "^1.0.0",
+    "p-progress": "^0.1.1",
+    "p-timeout": "^1.2.0",
+    "pdf-to-json": "^0.1.0",
+    "searchive-client": "^0.1.0"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.44",

@@ -11,7 +11,7 @@
     "src/"
   ],
   "name": "searchive-cli",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Searchive for command line.",
   "main": "lib/searchive-cli.js",
   "bin": {
@@ -50,8 +50,8 @@
   },
   "types": "lib/searchive-cli.d.ts",
   "dependencies": {
-    "searchive-create-index": "^1.0.0",
-    "searchive-client": "^1.0.0",
-    "meow": "^3.7.0"
+    "meow": "^3.7.0",
+    "searchive-client": "^0.1.0",
+    "searchive-create-index": "^0.1.0"
   }
 }

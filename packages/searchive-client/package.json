@@ -11,7 +11,7 @@
     "src/"
   ],
   "name": "searchive-client",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Search text using index.",
   "main": "lib/searchive-client.js",
   "scripts": {
@@ -42,9 +42,9 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
+    "searchive-cli": "^0.1.0",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1",
-    "searchive-cli": "^1.0.0"
+    "typescript": "^2.6.1"
   },
   "prettier": {
     "printWidth": 120,

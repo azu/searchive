@@ -11,7 +11,7 @@
     "src/"
   ],
   "name": "searchive-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Searchive API Server.",
   "main": "lib/searchive-server.js",
   "bin": {
@@ -37,17 +37,17 @@
   },
   "homepage": "https://github.com/azu/searchive/tree/master/packages/searchive-server/",
   "dependencies": {
-    "meow": "^3.7.0",
-    "searchive-web-api-interface": "^1.0.0",
-    "searchive-client": "^1.0.0",
-    "searchive-create-index": "^1.0.0",
-    "@types/ws": "^3.2.0",
-    "ws": "^3.3.1",
     "@types/restify": "^5.0.6",
     "@types/restify-errors": "^4.3.2",
+    "@types/ws": "^3.2.0",
+    "meow": "^3.7.0",
     "restify": "^6.3.2",
+    "restify-cors-middleware": "^1.0.1",
     "restify-errors": "^5.0.0",
-    "restify-cors-middleware": "^1.0.1"
+    "searchive-client": "^0.1.0",
+    "searchive-create-index": "^0.1.0",
+    "searchive-web-api-interface": "^0.1.0",
+    "ws": "^3.3.1"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.44",
