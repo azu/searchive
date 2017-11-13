@@ -12,7 +12,7 @@
     "predist": "rimraf node_modules && yarn install",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "publish": "electron-builder --publish always"
+    "release": "electron-builder --publish always"
   },
   "electronWebpack": {},
   "build": {
@@ -51,7 +51,7 @@
   "devDependencies": {
     "electron": "^1.7.9",
     "electron-builder": "^19.45.4",
-    "electron-webpack": "1.10.1",
+    "electron-webpack": "1.11.0",
     "electron-webpack-ts": "^1.2.0",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",

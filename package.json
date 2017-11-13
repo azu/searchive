@@ -17,7 +17,8 @@
     "precommit": "lint-staged",
     "postcommit": "git reset",
     "test": "lerna run test",
-    "publish": "lerna publish",
+    "publish": "lerna publish && yarn run publish:app",
+    "publish:app": "lerna run release --stream --scope searchive-app",
     "app": "lerna run dev --scope searchive-app"
   },
   "keywords": [
