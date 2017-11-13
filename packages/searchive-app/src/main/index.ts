@@ -1,6 +1,8 @@
 "use strict";
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, shell, Menu } from "electron";
 import { SearchiveServer } from "searchive-server";
+
+const defaultMenu = require("electron-default-menu");
 import * as path from "path";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -63,6 +65,9 @@ app.on("activate", () => {
 
 // Create main BrowserWindow when electron is ready
 app.on("ready", () => {
+    const menu = defaultMenu(app, shell);
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
+    // window
     mainWindow = createMainWindow();
     const indexPath = path.join(app.getPath("userData"), "searchive-app.index.json");
     console.log("Index Path: ", indexPath);

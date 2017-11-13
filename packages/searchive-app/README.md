@@ -28,3 +28,11 @@ yarn dist
 yarn dist:dir
 ```
 
+## Notes
+
+> "predist": "rimraf node_modules && yarn install"
+
+It aim to avoid to error "restify".
+`learn` link as symlink, Instead of, `yarn install` install actual dependencies.
+
+- [Symlinks in asarUnpack are not copied · Issue #1376 · electron-userland/electron-builder](https://github.com/electron-userland/electron-builder/issues/1376 "Symlinks in asarUnpack are not copied · Issue #1376 · electron-userland/electron-builder")

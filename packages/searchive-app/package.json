@@ -9,10 +9,12 @@
     "start": "run-p dev",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
+    "predist": "rimraf node_modules && yarn install",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
   "electronWebpack": {},
+  "build": {},
   "dependencies": {
     "@types/react": "^16.0.22",
     "@types/react-dom": "^16.0.3",
@@ -21,6 +23,7 @@
     "almin-logger": "^6.1.0",
     "almin-react-container": "^0.5.0",
     "ddd-base": "^0.3.0",
+    "electron-default-menu": "^1.0.1",
     "lodash.throttle": "^4.1.1",
     "office-ui-fabric-react": "^5.21.0",
     "pdfjs-dist-viewer-min": "^1.9.426",
@@ -36,10 +39,11 @@
   },
   "devDependencies": {
     "electron": "^1.7.9",
-    "electron-builder": "^19.42.1",
+    "electron-builder": "^19.45.4",
     "electron-webpack": "1.10.1",
     "electron-webpack-ts": "^1.2.0",
     "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1"
   }
