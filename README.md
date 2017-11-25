@@ -37,8 +37,23 @@ This repository is a monorepo.
 
 ## Development
 
+### Install in Development
+
     yarn install
     yarn run bootstrap
+
+### Publish
+
+Publish Searchive-app.
+Need to create `.env` in root dir.
+
+```
+GH_TOKEN="XXXX"
+```
+
+And publish it.
+
+    yarn run publish
 
 ## Changelog
 
