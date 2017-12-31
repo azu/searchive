@@ -2,6 +2,9 @@
   "private": true,
   "author": "azu",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "files": [
     "bin/",
     "lib/",
@@ -11,8 +14,8 @@
   "version": "1.0.0",
   "description": "Search all my documents",
   "scripts": {
+    "clean": "lerna run clean && lerna clean --yes",
     "bootstrap": "lerna bootstrap",
-    "prepublish": "yarn run bootstrap",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "precommit": "lint-staged",
     "postcommit": "git reset",
