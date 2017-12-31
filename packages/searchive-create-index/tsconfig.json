@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "*": [
+        "*/src"
+      ]
+    },
     /* Basic Options */
     "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "LF",
-    "outDir": "./lib/",
+    "outDir": "./lib",
     "target": "es5",
     "sourceMap": true,
     "declaration": true,
     "jsx": "preserve",
     "lib": [
+      "es2015",
+      "es2016",
       "es2017",
       "dom"
     ],
@@ -25,11 +33,6 @@
     "noFallthroughCasesInSwitch": true
     /* Report errors for fallthrough cases in switch statement. */
   },
-  "plugins": [
-    {
-      "name": "typescript-workspace-plugin"
-    }
-  ],
   "include": [
     "src/**/*"
   ],
