@@ -58,12 +58,12 @@
   },
   "devDependencies": {
     "electron": "^1.7.9",
-    "electron-builder": "^19.46.4",
+    "electron-builder": "^19.49.4",
     "electron-webpack": "1.11.0",
     "electron-webpack-ts": "^1.2.0",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",
-    "typescript": "^2.6.1",
-    "webpack": "^3.8.1"
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
   }
 }
