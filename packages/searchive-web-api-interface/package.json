@@ -13,7 +13,8 @@
   "name": "searchive-web-api-interface",
   "version": "0.1.0",
   "description": "Web API Interface for sharing Client and Server.",
-  "main": "lib/searchive-web-api-interface.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
@@ -37,11 +38,10 @@
     "cross-env": "^5.1.1",
     "prettier": "^1.8.2",
     "rimraf": "^2.6.2",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   },
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
-  },
-  "types": "lib/searchive-web-api-interface.d.ts"
+  }
 }

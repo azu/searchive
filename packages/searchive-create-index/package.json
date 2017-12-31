@@ -13,7 +13,8 @@
   "name": "searchive-create-index",
   "version": "0.1.0",
   "description": "create search index",
-  "main": "lib/searchive-create-index.js",
+  "main": "lib/searchive-create-index/src/index.js",
+  "types": "lib/searchive-create-index/src/index.d.ts",
   "scripts": {
     "test": "mocha 'test/**/*.ts'",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
@@ -57,6 +58,5 @@
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
-  },
-  "types": "lib/searchive-create-index.d.ts"
+  }
 }

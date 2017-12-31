@@ -13,7 +13,8 @@
   "name": "searchive-client",
   "version": "0.1.0",
   "description": "Search text using index.",
-  "main": "lib/searchive-client.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "mocha 'test/**/*.ts'",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
@@ -51,6 +52,5 @@
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
-  },
-  "types": "lib/searchive-client.d.ts"
+  }
 }
