@@ -22,7 +22,7 @@
     "watch": "tsc -p . --watch",
     "prepublish": "npm run --if-present build",
     "update-fixtures": "searchive-index './test/fixtures/pdf/*.pdf' --output ./test/fixtures/index.json",
-    "clean": "rimraf lib/"
+    "clean": "rimraf lib/ out/"
   },
   "keywords": [
     "search"

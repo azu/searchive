@@ -13,7 +13,8 @@
   "name": "searchive-cli",
   "version": "0.1.0",
   "description": "Searchive for command line.",
-  "main": "lib/searchive-cli.js",
+  "main": "lib/searchive-cli/src/index.js",
+  "types": "lib/searchive-cli/src/index.d.ts",
   "bin": {
     "searchive-index": "bin/searchive-index.js",
     "searchive-search": "bin/searchive-search.js"
@@ -51,7 +52,6 @@
     "printWidth": 120,
     "tabWidth": 4
   },
-  "types": "lib/searchive-cli.d.ts",
   "dependencies": {
     "meow": "^3.7.0",
     "searchive-client": "^0.1.0",

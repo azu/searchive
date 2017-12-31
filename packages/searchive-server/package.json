@@ -13,7 +13,8 @@
   "name": "searchive-server",
   "version": "0.1.5",
   "description": "Searchive API Server.",
-  "main": "lib/searchive-server.js",
+  "main": "lib/searchive-server/src/index.js",
+  "types": "lib/searchive-server/src/index.d.ts",
   "bin": {
     "searchive-server": "./bin/searchive-server.js"
   },
@@ -24,7 +25,7 @@
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
     "prepublish": "npm run --if-present build",
-    "clean": "rimraf lib/"
+    "clean": "rimraf lib/ out/"
   },
   "keywords": [
     "api"
@@ -63,6 +64,5 @@
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
-  },
-  "types": "lib/searchive-server.d.ts"
+  }
 }
