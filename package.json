@@ -15,6 +15,7 @@
   "description": "Search all my documents",
   "scripts": {
     "clean": "lerna run clean && lerna clean --yes",
+    "prebuild": "lerna run clean",
     "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
