@@ -2,6 +2,7 @@
 import * as path from "path";
 import * as assert from "assert";
 import { createIndex } from "../src/searchive-create-index";
+import { SearchiveDocument } from "../../searchive-client/src/searchive-client";
 
 describe("searchive-create-index", () => {
     it("can observe progressing", async () => {
@@ -17,11 +18,11 @@ describe("searchive-create-index", () => {
         const index = await indexingPromise;
         assert.deepEqual(progressValues, [0.5, 1]);
         assert.ok(Array.isArray(index.indexPatterns));
-        index.indexPatterns.forEach(pattern => {
+        (index.indexPatterns as string[]).forEach(pattern => {
             assert.equal(typeof pattern, "string");
         });
         assert.ok(Array.isArray(index.documents));
-        index.documents.forEach(document => {
+        (index.documents as SearchiveDocument[]).forEach(document => {
             assert.equal(typeof document.id, "string");
         });
     });

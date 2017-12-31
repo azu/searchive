@@ -16,7 +16,7 @@
   "scripts": {
     "clean": "lerna run clean && lerna clean --yes",
     "build": "lerna run build",
-    "bootstrap":  "lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "precommit": "lint-staged",
     "postcommit": "git reset",
@@ -51,7 +51,7 @@
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   },
   "prettier": {
     "printWidth": 120,
