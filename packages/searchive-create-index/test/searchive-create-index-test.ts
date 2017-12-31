@@ -1,8 +1,8 @@
 // MIT © 2017 azu
 import * as path from "path";
 import * as assert from "assert";
-import { createIndex } from "../src/searchive-create-index";
-import { SearchiveDocument } from "../../searchive-client/src/searchive-client";
+import { createIndex } from "../src";
+import { SearchiveDocument } from "searchive-client";
 
 describe("searchive-create-index", () => {
     it("can observe progressing", async () => {
