@@ -18,7 +18,8 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "clean": "rimraf lib/"
   },
   "keywords": [
     "serchive"
@@ -35,6 +36,7 @@
     "@types/node": "^8.0.51",
     "cross-env": "^5.1.1",
     "prettier": "^1.8.2",
+    "rimraf": "^2.6.2",
     "typescript": "^2.6.1"
   },
   "prettier": {

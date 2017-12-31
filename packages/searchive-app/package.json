@@ -12,7 +12,8 @@
     "clean-install": "rimraf node_modules && yarn install",
     "dist": "yarn clean-install && yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "release": "yarn clean-install && electron-builder --publish always"
+    "release": "yarn clean-install && electron-builder --publish always",
+    "clean": "rimraf lib/ dist/"
   },
   "electronWebpack": {},
   "build": {

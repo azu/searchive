@@ -23,7 +23,8 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "clean": "rimraf lib/"
   },
   "keywords": [
     "api"
@@ -55,6 +56,7 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "prettier": "^1.8.2",
+    "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
   },

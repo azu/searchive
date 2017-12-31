@@ -20,7 +20,8 @@
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
     "prepublish": "npm run --if-present build",
-    "update-fixtures": "searchive-index './test/fixtures/pdf/*.pdf' --output ./test/fixtures/index.json"
+    "update-fixtures": "searchive-index './test/fixtures/pdf/*.pdf' --output ./test/fixtures/index.json",
+    "clean": "rimraf lib/"
   },
   "keywords": [
     "search"
@@ -42,6 +43,7 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
+    "rimraf": "^2.6.2",
     "searchive-cli": "^0.1.0",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
