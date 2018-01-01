@@ -2,7 +2,6 @@
 import * as React from "react";
 import { SearchBar } from "./SearchBar/SearchBar";
 import { SearchResultList } from "./SearchResultList/SearchResultList";
-import { SearchResultFilterBar } from "../../../lib/renderer/component/SearchResultFilterBar/SearchResultFilterBar";
 import { Context } from "almin";
 import { appStoreGroup } from "../store/AppStoreGroup";
 import UpdateSearchFilterUseCase from "../use-case/Search/UpdateSearchFilterUseCase";
@@ -12,6 +11,7 @@ import { DismissIndexPanelUseCase, ShowIndexPanelUseCase } from "../use-case/Sea
 import { RequestForUpdateIndexPatternsUseCase } from "../use-case/SearchIndex/RequestForUpdateIndexPatternsUseCase";
 import { CommandBar } from "office-ui-fabric-react";
 import { RefreshSearchIndexUseCase } from "../use-case/SearchIndex/RefreshSearchIndexUseCase";
+import { SearchResultFilterBar } from "./SearchResultFilterBar/SearchResultFilterBar";
 
 const throttle = require("lodash.throttle");
 
