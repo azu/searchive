@@ -2,9 +2,9 @@
 import globby = require("globby");
 import pLimit = require("p-limit");
 import pTimeout = require("p-timeout");
-import { pdfToJSON, PdfToJSONResult } from "pdf-to-json";
 import * as os from "os";
 import { SearchiveDocumentIndex, SearchiveIndexer } from "searchive-client";
+import { pdfToJSON, PdfToJSONResult } from "pdf-to-json";
 
 export interface PProgressInstance<T> extends Promise<T> {
     onProgress: (progressHandler: (progress: number) => void) => void;

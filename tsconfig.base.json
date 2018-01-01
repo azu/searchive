@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./packages",
     "paths": {
       "*": [
-        "packages/*/src"
+        "./*/src"
       ]
     },
     /* Basic Options */
@@ -34,7 +34,7 @@
     /* Report errors for fallthrough cases in switch statement. */
   },
   "include": [
-    "src/**/*"
+    "*"
   ],
   "exclude": [
     ".git",

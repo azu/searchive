@@ -21,6 +21,7 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "precommit": "lint-staged",
     "postcommit": "git reset",
+    "pretest": "npm run build",
     "test": "lerna run test",
     "publish": "lerna publish && yarn run publish:app",
     "publish:app": "dotenv lerna run release --stream --scope searchive-app",
