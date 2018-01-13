@@ -42,7 +42,7 @@
     "almin-react-container": "^0.5.0",
     "ddd-base": "^0.3.0",
     "electron-default-menu": "^1.0.1",
-    "electron-updater": "^2.16.1",
+    "electron-updater": "^2.18.2",
     "lodash.throttle": "^4.1.1",
     "office-ui-fabric-react": "^5.21.0",
     "pdfjs-dist-viewer-min": "^1.9.426",
