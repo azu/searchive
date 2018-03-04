@@ -19,7 +19,7 @@
     "test": "lerna run test",
     "publish": "lerna publish && yarn run publish:app",
     "publish:app": "dotenv lerna run release --stream --scope searchive-app",
-    "app": "lerna run dev --scope searchive-app"
+    "app": "cd packages/searchive-app && yarn run dev"
   },
   "keywords": [
     "search",
