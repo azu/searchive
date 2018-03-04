@@ -45,7 +45,7 @@ This repository is a monorepo.
 ### Publish
 
 Publish Searchive-app.
-Need to create `.env` in root dir.
+Need to create `.env` in [packages/searchive-app](packages/searchive-app) dir.
 
 ```
 GH_TOKEN="XXXX"

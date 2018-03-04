@@ -12,7 +12,7 @@
     "clean-install": "rimraf node_modules && yarn install",
     "dist": "yarn clean-install && yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "release": "yarn clean-install && yarn compile && electron-builder --publish always"
+    "release": "yarn clean-install && yarn compile && dotenv electron-builder --publish always"
   },
   "electronWebpack": {},
   "build": {
@@ -57,6 +57,7 @@
     "source-map-support": "^0.5.0"
   },
   "devDependencies": {
+    "dotenv": "^5.0.1",
     "electron": "^1.7.9",
     "electron-builder": "^19.52.1",
     "electron-webpack": "1.11.0",

@@ -18,7 +18,7 @@
     "postcommit": "git reset",
     "test": "lerna run test",
     "publish": "lerna publish && yarn run publish:app",
-    "publish:app": "dotenv lerna run release --stream --scope searchive-app",
+    "publish:app": "cd packages/searchive-app && yarn run release",
     "app": "cd packages/searchive-app && yarn run dev"
   },
   "keywords": [
