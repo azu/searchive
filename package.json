@@ -2,6 +2,9 @@
   "private": true,
   "author": "azu",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "files": [
     "bin/",
     "lib/",
@@ -11,11 +14,14 @@
   "version": "1.0.0",
   "description": "Search all my documents",
   "scripts": {
+    "clean": "lerna run clean && lerna clean --yes",
+    "prebuild": "lerna run clean",
+    "build": "lerna run build",
     "bootstrap": "lerna bootstrap",
-    "prepublish": "yarn run bootstrap",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "precommit": "lint-staged",
     "postcommit": "git reset",
+    "pretest": "npm run build",
     "test": "lerna run test",
     "publish": "lerna publish && yarn run publish:app",
     "publish:app": "cd packages/searchive-app && yarn run release",
@@ -47,7 +53,7 @@
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   },
   "prettier": {
     "printWidth": 120,

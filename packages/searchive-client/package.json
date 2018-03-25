@@ -13,14 +13,16 @@
   "name": "searchive-client",
   "version": "0.1.0",
   "description": "Search text using index.",
-  "main": "lib/searchive-client.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha 'test/**/*.ts'",
+    "test": "cross-env TS_NODE_PROJECT=test/ mocha 'test/**/*.ts'",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
     "prepublish": "npm run --if-present build",
-    "update-fixtures": "searchive-index './test/fixtures/pdf/*.pdf' --output ./test/fixtures/index.json"
+    "update-fixtures": "searchive-index './test/fixtures/pdf/*.pdf' --output ./test/fixtures/index.json",
+    "clean": "rimraf lib/ out/"
   },
   "keywords": [
     "search"
@@ -42,13 +44,14 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
+    "rimraf": "^2.6.2",
     "searchive-cli": "^0.1.0",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "tsconfig-paths": "^2.6.0",
+    "typescript": "^2.6.2"
   },
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
-  },
-  "types": "lib/searchive-client.d.ts"
+  }
 }

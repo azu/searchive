@@ -13,13 +13,14 @@
   "name": "searchive-server",
   "version": "0.1.5",
   "description": "Searchive API Server.",
-  "main": "lib/searchive-server.js",
+  "main": "lib/searchive-server/src/index.js",
+  "types": "lib/searchive-server/src/index.d.ts",
   "bin": {
     "searchive-server": "./bin/searchive-server.js"
   },
   "scripts": {
     "start": "node ./bin/searchive-server.js --index-path ./index.json",
-    "test": "mocha 'test/**/*.ts'",
+    "test": "cross-env TS_NODE_PROJECT=test/ mocha 'test/**/*.ts'",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
@@ -55,12 +56,13 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "prettier": "^1.8.2",
+    "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "tsconfig-paths": "^2.6.0",
+    "typescript": "^2.6.2"
   },
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
-  },
-  "types": "lib/searchive-server.d.ts"
+  }
 }

@@ -13,7 +13,8 @@
   "name": "searchive-cli",
   "version": "0.1.0",
   "description": "Searchive for command line.",
-  "main": "lib/searchive-cli.js",
+  "main": "lib/searchive-cli/src/index.js",
+  "types": "lib/searchive-cli/src/index.d.ts",
   "bin": {
     "searchive-index": "bin/searchive-index.js",
     "searchive-search": "bin/searchive-search.js"
@@ -22,7 +23,9 @@
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "clean": "rimraf lib/",
+    "test": "echo 'no test'"
   },
   "keywords": [
     "search"
@@ -41,14 +44,15 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "prettier": "^1.8.1",
+    "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "tsconfig-paths": "^2.6.0",
+    "typescript": "^2.6.2"
   },
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4
   },
-  "types": "lib/searchive-cli.d.ts",
   "dependencies": {
     "meow": "^3.7.0",
     "searchive-client": "^0.1.0",

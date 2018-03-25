@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "*": [
+        "./*/src"
+      ]
+    },
     /* Basic Options */
     "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "LF",
-    "outDir": "./lib/",
+    "outDir": "./lib",
     "target": "es5",
     "sourceMap": true,
     "declaration": true,
@@ -28,7 +34,7 @@
     /* Report errors for fallthrough cases in switch statement. */
   },
   "include": [
-    "**/*"
+    "*"
   ],
   "exclude": [
     ".git",

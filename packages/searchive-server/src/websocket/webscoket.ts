@@ -22,7 +22,7 @@ export class WebSocketServer {
         const createIndex = createHandlerCreateIndex(this.args);
         this.wss.on("connection", (ws: WebSocket, req: http.IncomingMessage) => {
             const parsedUrl = url.parse(req.url!, true);
-            const token = parsedUrl && parsedUrl.query.token;
+            const token = parsedUrl && parsedUrl.query && (parsedUrl.query as any).token;
             const send = createSender(ws);
             if (this.args.secretKey && this.args.secretKey !== token) {
                 return send({
